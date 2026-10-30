@@ -55,7 +55,7 @@ export async function deleteRemoteLanes(
   if (useSessionsStore.getState().bulkDelete?.running) return
   const targets = lanes.map((lane) => ({
     path: remoteLaneKey(hostId, lane.laneId),
-    title: lane.title || 'Untitled lane',
+    title: lane.title || 'Carril sin título',
   }))
   useSessionsStore.setState({
     bulkDelete: {

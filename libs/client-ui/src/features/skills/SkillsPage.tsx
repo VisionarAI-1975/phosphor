@@ -881,12 +881,12 @@ function LibrarySection({
                 </div>
                 <Button
                   size="sm"
-                  aria-label={`${installed ? 'Installed' : 'Add'} ${entry.name}`}
+                  aria-label={`${installed ? 'Instalado' : 'Add'} ${entry.name}`}
                   variant={installed ? 'secondary' : 'primary'}
                   disabled={installed || busy != null}
                   onClick={() => void install(entry.name)}
                 >
-                  {installed ? 'Installed' : busy === entry.name ? 'Adding…' : 'Add'}
+                  {installed ? 'Instalado' : busy === entry.name ? 'Adding…' : 'Add'}
                 </Button>
               </div>
             )

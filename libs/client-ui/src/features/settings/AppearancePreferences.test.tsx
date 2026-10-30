@@ -85,15 +85,15 @@ async function click(label: string): Promise<void> {
 }
 it('Desktop appearance applies theme and exposes its font controls', async () => {
   await act(async () => root.render(<AppearanceTab />))
-  expect(container.querySelector('[role="group"][aria-label="Theme"]')).not.toBeNull()
-  await click('Light')
+  expect(container.querySelector('[role="group"][aria-label="Tema"]')).not.toBeNull()
+  await click('Claro')
   expect(theme).toHaveBeenCalledWith('light')
   expect(container.textContent).toContain('Chat font size')
   expect(container.textContent).toContain('Terminal font size')
 })
 it('browser settings recovers sign-out after failure', async () => {
   await compact()
-  await click('Light')
+  await click('Claro')
   expect(theme).toHaveBeenCalledWith('light')
   await click('Phosphor account')
   await click('Sign out')

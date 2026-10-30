@@ -70,7 +70,7 @@ export function RemoveWorktreeModal({
         }
         footer={
           <>
-            <Button onClick={onClose}>{branchNote ? 'Done' : 'Cancel'}</Button>
+            <Button onClick={onClose}>{branchNote ? 'Listo' : 'Cancelar'}</Button>
             {!branchNote && (
               <Button
                 variant="danger"

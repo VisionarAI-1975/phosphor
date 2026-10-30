@@ -25,16 +25,16 @@ const SURFACES = ['desktop', 'browser', 'home', 'machine'] as const
 type Surface = (typeof SURFACES)[number]
 const SECOND = '0000000000000002'
 const READER_MENU = [
-  'Open',
-  'Rename',
+  'Abrir',
+  'Renombrar',
   'Take control',
-  'Stop',
+  'Detener',
   'Mark read',
-  'Pin',
+  'Fijar',
   'Lane marker',
   'Copy debug info',
   'Copy spend',
-  'Delete',
+  'Eliminar',
 ]
 
 let root: Root, el: HTMLDivElement
@@ -165,7 +165,7 @@ it.each(SURFACES)('%s row opens the same lane menu on right-click', (name) => {
   render(name)
   rightClick()
   expect(labels(menuRows())).toEqual(READER_MENU)
-  expect(menuRow('Delete')?.textContent).toContain('Take control first.')
+  expect(menuRow('Eliminar')?.textContent).toContain('Take control first.')
 })
 
 it.each(SURFACES)('%s row lets the controller delete the lane', (name) => {
@@ -174,8 +174,8 @@ it.each(SURFACES)('%s row lets the controller delete the lane', (name) => {
   })
   render(name)
   rightClick()
-  expect(menuRow('Delete')?.disabled).toBe(false)
-  act(() => menuRow('Delete')!.click())
+  expect(menuRow('Eliminar')?.disabled).toBe(false)
+  act(() => menuRow('Eliminar')!.click())
   expect(document.body.textContent).toContain('Delete session')
 })
 
@@ -213,8 +213,8 @@ it.each(['desktop', 'browser'] as const)(
   async (name) => {
     render(name)
     rightClick()
-    expect(menuRow('Pin')?.disabled).toBe(false)
-    await act(async () => menuRow('Pin')!.click())
+    expect(menuRow('Fijar')?.disabled).toBe(false)
+    await act(async () => menuRow('Fijar')!.click())
     expect(invoke).toHaveBeenCalledWith('hosts:setLaneMarks', MOCK_HOST_ID, lane().laneId, {
       pinned: true,
     })
@@ -241,7 +241,7 @@ it.each(['desktop', 'browser'] as const)(
     })
     render(name)
     rightClick()
-    for (const label of ['Pin', 'Lane marker']) {
+    for (const label of ['Fijar', 'Lane marker']) {
       expect(menuRow(label)?.disabled, label).toBe(true)
       expect(menuRow(label)?.textContent, label).toContain('Update this Host')
     }

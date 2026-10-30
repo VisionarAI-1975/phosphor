@@ -147,7 +147,7 @@ it('keeps remote skills read-only, gates capability and never offers local insta
     `${workspacePath}/skill:remote-skill`,
     'SKILL.md',
   )
-  for (const label of ['Delete', 'Edit', 'Publish', 'Update', 'Export'])
+  for (const label of ['Eliminar', 'Edit', 'Publish', 'Actualizar', 'Exportar'])
     expect(container.textContent).not.toContain(label)
   await act(async () => useRemoteLanesStore.setState({ hosts: {} }))
   expect(container.textContent).toContain('Not available on remote lanes yet.')
@@ -346,21 +346,21 @@ function choiceButton(label: string): HTMLButtonElement {
   return match!
 }
 
-it.each(['Cancel', 'Escape', 'backdrop'])(
+it.each(['Cancelar', 'Escape', 'backdrop'])(
   'does not delete on the initial click or %s dismissal',
   async (dismissal) => {
     const invoke = await renderDeletionDetail()
     await act(async () => {
-      button('Delete').click()
-      button('Delete').click()
+      button('Eliminar').click()
+      button('Eliminar').click()
     })
     expect(invoke).not.toHaveBeenCalledWith('skills:delete', deletionDir, '/repo')
     expect(usePromptStore.getState().requests).toHaveLength(1)
     expect(document.querySelector('[role="dialog"]')?.textContent).toContain('my-bundle')
     expect(choiceButton('Move to Trash')).toBeDefined()
-    expect(button('Delete').disabled).toBe(true)
+    expect(button('Eliminar').disabled).toBe(true)
     await act(async () => {
-      if (dismissal === 'Cancel') choiceButton('Cancel').click()
+      if (dismissal === 'Cancelar') choiceButton('Cancelar').click()
       else if (dismissal === 'Escape')
         window.dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape' }))
       else document.querySelector<HTMLElement>('[data-modal-overlay]')!.click()
@@ -369,7 +369,7 @@ it.each(['Cancel', 'Escape', 'backdrop'])(
     expect(invoke).not.toHaveBeenCalledWith('skills:delete', deletionDir, '/repo')
     expect(useSkillsStore.getState().selectedDir).toBe(deletionDir)
     expect(useSkillsStore.getState().refresh).not.toHaveBeenCalled()
-    expect(button('Delete').disabled).toBe(false)
+    expect(button('Eliminar').disabled).toBe(false)
   },
 )
 
@@ -383,8 +383,8 @@ it('sends one confirmed delete and navigates back only after it succeeds', async
       }),
   )
   await act(async () => {
-    button('Delete').click()
-    button('Delete').click()
+    button('Eliminar').click()
+    button('Eliminar').click()
   })
   expect(usePromptStore.getState().requests).toHaveLength(1)
   await act(async () => {
@@ -394,7 +394,7 @@ it('sends one confirmed delete and navigates back only after it succeeds', async
   })
   expect(invoke).toHaveBeenCalledExactlyOnceWith('skills:delete', deletionDir, '/repo')
   expect(useSkillsStore.getState().selectedDir).toBe(deletionDir)
-  expect(button('Delete').disabled).toBe(true)
+  expect(button('Eliminar').disabled).toBe(true)
   await act(async () => finish())
   expect(useSkillsStore.getState().selectedDir).toBeNull()
   expect(useSkillsStore.getState().refresh).toHaveBeenCalledExactlyOnceWith('/repo')
@@ -403,14 +403,14 @@ it('sends one confirmed delete and navigates back only after it succeeds', async
 it('retains the detail and surfaces a failed Trash operation, allowing retry', async () => {
   const invoke = await renderDeletionDetail()
   invoke.mockRejectedValueOnce(new Error('Trash unavailable'))
-  await act(async () => button('Delete').click())
+  await act(async () => button('Eliminar').click())
   await act(async () => choiceButton('Move to Trash').click())
   expect(invoke).toHaveBeenCalledExactlyOnceWith('skills:delete', deletionDir, '/repo')
   expect(useSkillsStore.getState().selectedDir).toBe(deletionDir)
   expect(container.querySelector('[role="alert"]')?.textContent).toContain('Trash unavailable')
   expect(useSkillsStore.getState().refresh).not.toHaveBeenCalled()
-  expect(button('Delete').disabled).toBe(false)
-  await act(async () => button('Delete').click())
+  expect(button('Eliminar').disabled).toBe(false)
+  await act(async () => button('Eliminar').click())
   await act(async () => choiceButton('Move to Trash').click())
   expect(invoke).toHaveBeenCalledTimes(2)
   expect(useSkillsStore.getState().selectedDir).toBeNull()

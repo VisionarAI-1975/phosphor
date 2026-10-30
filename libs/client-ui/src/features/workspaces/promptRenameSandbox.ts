@@ -49,7 +49,7 @@ export async function promptRenameSandbox(path: string): Promise<string | null> 
       .filter(Boolean)
       .join(' '),
     initialValue: current,
-    submitLabel: 'Rename',
+    submitLabel: 'Renombrar',
   })
   if (name === undefined || !name.trim() || name.trim() === current) return null
 

@@ -30,10 +30,10 @@ const rows = (): HTMLButtonElement[] => Array.from(menu()?.querySelectorAll('but
 
 function items(run = vi.fn()): ContextMenuItem[] {
   return [
-    { label: 'Open', onClick: run },
+    { label: 'Abrir', onClick: run },
     { label: 'Suspend', hint: '~200 MB', shortcut: '⌘S', onClick: vi.fn() },
     { label: 'Fork', separatorAbove: true, disabled: true, onClick: vi.fn() },
-    { label: 'Delete', hint: 'to trash', danger: true, onClick: vi.fn() },
+    { label: 'Eliminar', hint: 'to trash', danger: true, onClick: vi.fn() },
   ]
 }
 
@@ -45,7 +45,7 @@ describe('ContextMenuHost expanded popover (characterization)', () => {
     expect(popover.style.left).toBe('40px')
     expect(popover.style.top).toBe('50px')
     expect(rows().map((row) => row.textContent)).toEqual([
-      'Open',
+      'Abrir',
       'Suspend~200 MB⌘S',
       'Fork',
       'Deleteto trash',
@@ -349,11 +349,11 @@ describe('useMenuTriggers and the phone action sheet (regression: no long-press 
     expect(groups.map((group) => group.querySelectorAll('button').length)).toEqual([2, 2])
     const buttons = Array.from(dialog.querySelectorAll('button'))
     expect(buttons.map((button) => button.textContent)).toEqual([
-      'Open',
+      'Abrir',
       'Suspend~200 MB',
       'Fork',
       'Deleteto trash',
-      'Cancel',
+      'Cancelar',
     ])
     expect(buttons[1]!.querySelector('.action-sheet-hint')!.textContent).toBe('~200 MB')
     expect(buttons[2]!.disabled).toBe(true)
@@ -371,7 +371,7 @@ describe('useMenuTriggers and the phone action sheet (regression: no long-press 
     mount(null, COMPACT_PLATFORM)
     act(() =>
       showContextMenuAt(0, 0, [
-        { label: 'Delete', hint: 'another delete is running', disabled: true, onClick: vi.fn() },
+        { label: 'Eliminar', hint: 'another delete is running', disabled: true, onClick: vi.fn() },
       ]),
     )
     const row = sheet()!.querySelector('button')!

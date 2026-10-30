@@ -123,7 +123,7 @@ export function ExposureEditor({
         </p>
       )}
       <Button size="sm" disabled={saving} onClick={() => void save()}>
-        {saving ? 'Saving…' : 'Save visibility'}
+        {saving ? 'Guardando…' : 'Save visibility'}
       </Button>
     </details>
   )

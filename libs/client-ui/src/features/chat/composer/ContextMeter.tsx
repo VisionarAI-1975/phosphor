@@ -597,7 +597,7 @@ function AccountRouting({
           className="text-accent shrink-0 hover:underline"
           aria-expanded={picking}
         >
-          {picking ? 'Cancel' : 'Switch account'}
+          {picking ? 'Cancelar' : 'Switch account'}
         </TooltipButton>
       </div>
       {picking && (

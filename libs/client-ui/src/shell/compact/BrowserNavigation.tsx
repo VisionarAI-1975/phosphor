@@ -54,7 +54,7 @@ function NavigationBody({
         <PhosphorLoader size={26} decorative animated={false} />
         <strong>Phosphor</strong>
         {drawer && (
-          <Button aria-label="Close navigation" onClick={onClose}>
+          <Button aria-label="Cerrar navegación" onClick={onClose}>
             <CloseIcon size={16} />
           </Button>
         )}
@@ -121,7 +121,7 @@ function NavigationDrawer({
         ref={ref}
         role="dialog"
         aria-modal="true"
-        aria-label="Navigation"
+        aria-label="Navegación"
         className="browser-drawer"
         onKeyDown={trap}
       >

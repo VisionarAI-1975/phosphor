@@ -760,7 +760,7 @@ function UpdateRow({
         disabled={running}
         className="bg-accent hover:bg-accent-hover text-accent-text shrink-0 rounded-md px-2.5 py-1 text-base font-medium transition-colors disabled:opacity-50"
       >
-        {running ? 'Updating…' : 'Update'}
+        {running ? 'Updating…' : 'Actualizar'}
       </TooltipButton>
     </div>
   )

@@ -113,7 +113,7 @@ it('does not apply a late reply after sign-out and sign-in', async () => {
 })
 it('returns focus to Rename after Escape and after a save', async () => {
   const rename = (): HTMLButtonElement | undefined =>
-    Array.from(container.querySelectorAll('button')).find((b) => b.textContent === 'Rename')
+    Array.from(container.querySelectorAll('button')).find((b) => b.textContent === 'Renombrar')
   await edit('other')
   await key('Escape')
   expect(document.activeElement).toBe(rename())

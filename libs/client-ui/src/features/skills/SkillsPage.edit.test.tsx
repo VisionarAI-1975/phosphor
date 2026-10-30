@@ -86,7 +86,7 @@ it('never offers source editing for package/foreign skills', async () => {
   await render(false)
   await act(async () => button('source').click())
   expect(button('Edit source')).toBeUndefined()
-  expect(button('Delete')).toBeUndefined()
+  expect(button('Eliminar')).toBeUndefined()
 })
 
 it('restores only on request and surfaces restore failures', async () => {

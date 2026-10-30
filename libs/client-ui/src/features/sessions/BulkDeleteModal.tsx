@@ -401,7 +401,7 @@ export function BulkDeleteProgressPopover(): React.JSX.Element | null {
                   disabled={cancelled}
                   className="border-border text-text-secondary hover:text-text rounded-md border px-2.5 py-1 text-xs disabled:opacity-40"
                 >
-                  {cancelled ? 'Stopping…' : 'Stop'}
+                  {cancelled ? 'Deteniendo…' : 'Detener'}
                 </TooltipButton>
               )}
             </div>

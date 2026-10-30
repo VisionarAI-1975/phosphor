@@ -23,10 +23,10 @@ describe('buildTextFieldMenu', () => {
       'retrieve',
       'recede',
       'Add to dictionary',
-      'Cut',
-      'Copy',
-      'Paste',
-      'Select all',
+      'Cortar',
+      'Copiar',
+      'Pegar',
+      'Seleccionar todo',
     ])
     expect(menu[0]!.action).toEqual({ kind: 'replace', start: 7, end: 14, text: 'receive' })
     expect(menu[5]!.action).toEqual({ kind: 'learn', word: 'recieve' })
@@ -41,13 +41,13 @@ describe('buildTextFieldMenu', () => {
 
   it('offers only the edit commands for a correct word, with no separator', () => {
     const menu = buildTextFieldMenu(field({ value: 'please receive it' }), dictionary)
-    expect(menu.map((entry) => entry.label)).toEqual(['Cut', 'Copy', 'Paste', 'Select all'])
+    expect(menu.map((entry) => entry.label)).toEqual(['Cortar', 'Copiar', 'Pegar', 'Seleccionar todo'])
     expect(menu[0]!.separatorAbove).toBe(false)
   })
 
   it('skips spelling when the field or the setting turns it off', () => {
     const menu = buildTextFieldMenu(field({ spellcheck: false }), dictionary)
-    expect(menu[0]!.label).toBe('Cut')
+    expect(menu[0]!.label).toBe('Cortar')
   })
 
   it('disables what cannot apply', () => {
@@ -55,12 +55,12 @@ describe('buildTextFieldMenu', () => {
       buildTextFieldMenu(field({ spellcheck: false, ...patch }), dictionary)
         .filter((entry) => entry.disabled)
         .map((entry) => entry.label)
-    expect(disabled({ selectionStart: 3, selectionEnd: 3 })).toEqual(['Cut', 'Copy'])
-    expect(disabled({ readOnly: true })).toEqual(['Cut', 'Paste'])
+    expect(disabled({ selectionStart: 3, selectionEnd: 3 })).toEqual(['Cortar', 'Copiar'])
+    expect(disabled({ readOnly: true })).toEqual(['Cortar', 'Pegar'])
     expect(disabled({ value: '', selectionStart: 0, selectionEnd: 0 })).toEqual([
-      'Cut',
-      'Copy',
-      'Select all',
+      'Cortar',
+      'Copiar',
+      'Seleccionar todo',
     ])
   })
 })

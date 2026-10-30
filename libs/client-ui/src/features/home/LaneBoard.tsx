@@ -203,7 +203,7 @@ export function LaneBoard({ data }: { data: LaneBoardData }): React.JSX.Element 
 const ACTION_LABEL: Record<WorkbenchLane['action'], string> = {
   answer: 'Answer',
   merge: 'Review merge',
-  update: 'Update',
+  update: 'Actualizar',
   open: 'Open lane',
 }
 const STATE_ACCENT: Record<WorkbenchLane['state'], string> = {

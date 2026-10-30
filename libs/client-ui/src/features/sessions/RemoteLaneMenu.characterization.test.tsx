@@ -65,12 +65,12 @@ afterEach(() => {
 it('characterizes the Desktop Host lane menu for a reader: control first, then the rest', () => {
   render(host(false))
   expect(menuRows()).toEqual([
-    ['Open', false],
+    ['Abrir', false],
     ['RenameTake control first.', true],
     ['Take control', false],
     ['StopTake control first.', true],
     ['Mark read', false],
-    ['Pin', false],
+    ['Fijar', false],
     ['Lane marker', false],
     ['Copy debug info', false],
     ['Copy spend', false],
@@ -81,16 +81,16 @@ it('characterizes the Desktop Host lane menu for a reader: control first, then t
 it('characterizes the Desktop Host lane menu for the controller', () => {
   render(host(true))
   expect(menuRows()).toEqual([
-    ['Open', false],
-    ['Rename', false],
+    ['Abrir', false],
+    ['Renombrar', false],
     ['Release control', false],
-    ['Stop', false],
+    ['Detener', false],
     ['Mark read', false],
-    ['Pin', false],
+    ['Fijar', false],
     ['Lane marker', false],
     ['Copy debug info', false],
     ['Copy spend', false],
-    ['Delete', false],
+    ['Eliminar', false],
   ])
 })
 

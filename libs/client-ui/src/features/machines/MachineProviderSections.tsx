@@ -30,7 +30,7 @@ export function ClaudeSetup({
           </div>
           <div className="flex items-center gap-2">
             <StatusPill tone={state.claude.provider === 'ok' ? 'ok' : 'warn'}>
-              {state.claude.provider === 'ok' ? 'Installed' : state.claude.provider}
+              {state.claude.provider === 'ok' ? 'Instalado' : state.claude.provider}
             </StatusPill>
             {state.claude.provider !== 'ok' && (
               <Button
@@ -52,7 +52,7 @@ export function ClaudeSetup({
           </div>
           <div className="flex items-center gap-2">
             <StatusPill tone={state.claude.cli === 'ok' ? 'ok' : 'warn'}>
-              {state.claude.cli === 'ok' ? 'Installed' : 'Missing'}
+              {state.claude.cli === 'ok' ? 'Instalado' : 'Missing'}
             </StatusPill>
             {state.claude.cli !== 'ok' && (
               <Button
@@ -99,7 +99,7 @@ export function OtherProviders({ state, programs, busy }: ProviderSectionProps):
                 disabled={busy || !programs.available}
                 onClick={() => programs.login(provider.id)}
               >
-                {provider.status === 'ready' ? 'Manage sign-in' : 'Sign in'}
+                {provider.status === 'ready' ? 'Manage sign-in' : 'Iniciar sesión'}
               </Button>
             </li>
           ))}

@@ -61,7 +61,7 @@ const key = (value: string): void => {
 
 it('offers optional GitHub sign-in and direct settings while signed out', async () => {
   await render()
-  await click('Sign in')
+  await click('Iniciar sesión')
   expect(container.textContent).toContain('Sign-in is optional')
   expect(document.activeElement).toBe(button('Sign in with GitHub'))
   await click('Sign in with GitHub')
@@ -89,9 +89,9 @@ it('shows the signed-in header, online count, machine navigation and sign-out', 
 })
 it('supports keyboard navigation, Escape and outside dismissal with focus return', async () => {
   await render()
-  button('Sign in').focus()
+  button('Iniciar sesión').focus()
   // Native Enter/Space click activation is preserved by using a real button.
-  await click('Sign in')
+  await click('Iniciar sesión')
   key('ArrowDown')
   expect(document.activeElement?.textContent).toContain('Ajustes')
   key('Home')
@@ -102,21 +102,21 @@ it('supports keyboard navigation, Escape and outside dismissal with focus return
   expect(document.activeElement).toBe(button('Sign in with GitHub'))
   key('Escape')
   expect(document.querySelector('[data-popup-menu]')).toBeNull()
-  expect(document.activeElement).toBe(button('Sign in'))
-  await click('Sign in')
+  expect(document.activeElement).toBe(button('Iniciar sesión'))
+  await click('Iniciar sesión')
   act(() => document.body.dispatchEvent(new MouseEvent('mousedown', { bubbles: true })))
   expect(document.querySelector('[data-popup-menu]')).toBeNull()
-  expect(document.activeElement).toBe(button('Sign in'))
+  expect(document.activeElement).toBe(button('Iniciar sesión'))
 })
 it('shows signing-in progress and Cancel, then accepts the pushed state', async () => {
   account = { account: { status: 'signing-in' } }
   await render()
   expect(container.textContent).toContain('Finish in your browser')
   expect(document.querySelector('[data-popup-menu]')).toBeNull()
-  await click('Cancel')
+  await click('Cancelar')
   expect(invoke).toHaveBeenCalledWith('account:cancelSignIn')
   act(() => push({ account: { status: 'signed-out', error: 'Sign-in timed out.' } }))
-  expect(button('Sign in')).toBeDefined()
+  expect(button('Iniciar sesión')).toBeDefined()
   expect(container.querySelector('[role=alert]')?.textContent).toContain('Sign-in timed out')
 })
 it('uses deterministic initials and colour on missing or failed images, never a remote renderer URL', async () => {
@@ -170,7 +170,7 @@ it('offers no Cancel for a sign-in the client cannot cancel', async () => {
   )
   expect(container.textContent).toContain('Finish in your browser')
   expect(
-    Array.from(container.querySelectorAll('button')).some((b) => b.textContent === 'Cancel'),
+    Array.from(container.querySelectorAll('button')).some((b) => b.textContent === 'Cancelar'),
   ).toBe(false)
 })
 it('advertises the Settings shortcut only where the app shortcuts are installed', async () => {
@@ -183,7 +183,7 @@ it('advertises the Settings shortcut only where the app shortcuts are installed'
   )
   expect(button('Ajustes').getAttribute('aria-description')).toBeNull()
   expect(button('Ajustes').getAttribute('data-tooltip')).toBe('Ajustes')
-  await click('Sign in')
+  await click('Iniciar sesión')
   expect(
     Array.from(document.querySelectorAll('[data-popup-menu] button')).find((b) =>
       b.textContent?.startsWith('Ajustes'),

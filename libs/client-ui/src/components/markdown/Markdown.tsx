@@ -91,13 +91,13 @@ function MarkdownTable(props: React.TableHTMLAttributes<HTMLTableElement>): Reac
           onClick={(e) => copy(e, 'markdown')}
           className="border-border bg-surface text-text-tertiary hover:text-text rounded-md border px-2 py-0.5 text-xs shadow-sm"
         >
-          {copied === 'markdown' ? 'Copied' : 'Copy MD'}
+          {copied === 'markdown' ? 'Copiado' : 'Copy MD'}
         </TooltipButton>
         <TooltipButton
           onClick={(e) => copy(e, 'csv')}
           className="border-border bg-surface text-text-tertiary hover:text-text rounded-md border px-2 py-0.5 text-xs shadow-sm"
         >
-          {copied === 'csv' ? 'Copied' : 'Copy CSV'}
+          {copied === 'csv' ? 'Copiado' : 'Copy CSV'}
         </TooltipButton>
       </div>
       <div className="border-border overflow-x-auto rounded-lg border">

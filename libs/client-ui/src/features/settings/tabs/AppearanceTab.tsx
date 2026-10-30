@@ -14,18 +14,18 @@ export function AppearanceTab(): React.JSX.Element {
 
   return (
     <div>
-      <SectionTitle>Appearance</SectionTitle>
+      <SectionTitle>Apariencia</SectionTitle>
       {!savedFontPrefs && (
         <p className="text-text-secondary -mt-2 mb-2 text-base">
-          Theme is saved on this device. Font changes last until reload. Nothing is synced.
+          El tema se guarda en este dispositivo. Los cambios de fuente duran hasta recargar. Nada se sincroniza.
         </p>
       )}
 
       <AppearancePreferences />
       {pageZoom && (
         <Row
-          title="UI scale"
-          description={`Zooms the whole interface — text, icons and spacing. ${formatShortcut('mod', '+')} / ${formatShortcut('mod', '-')} to nudge, ${formatShortcut('mod', '0')} to reset.`}
+          title="Escala de la interfaz"
+          description={`Amplía toda la interfaz: texto, iconos y espaciado. ${formatShortcut('mod', '+')} / ${formatShortcut('mod', '-')} para ajustar, ${formatShortcut('mod', '0')} para restablecer.`}
         >
           <NumberField
             value={Math.round(fonts.uiScale * 100)}
@@ -38,8 +38,8 @@ export function AppearanceTab(): React.JSX.Element {
         </Row>
       )}
       <Row
-        title="Editor font size"
-        description="Monaco editor and diffs. Applies live to open views."
+        title="Tamaño de fuente del editor"
+        description="Editor Monaco y diffs. Se aplica en vivo a las vistas abiertas."
       >
         <NumberField
           value={fonts.editorFontSize}
@@ -51,7 +51,7 @@ export function AppearanceTab(): React.JSX.Element {
         />
       </Row>
       {terminal && (
-        <Row title="Terminal font size" description="Applies live to open terminal tabs.">
+        <Row title="Tamaño de fuente de la terminal" description="Se aplica en vivo a las pestañas de terminal abiertas.">
           <NumberField
             value={fonts.terminalFontSize}
             suffix="px"

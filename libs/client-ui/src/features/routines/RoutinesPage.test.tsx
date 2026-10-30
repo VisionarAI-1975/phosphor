@@ -399,7 +399,7 @@ it('remote history does not offer a local lane action without a remote lane iden
             startedAt: Date.now(),
             endedAt: Date.now(),
             status: 'finished',
-            reason: 'Done',
+            reason: 'Listo',
             definition: remote,
             sessionId: null,
             sessionPath: null,

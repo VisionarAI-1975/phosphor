@@ -25,7 +25,7 @@ export function CopyCommand({ command }: { command: string }): React.JSX.Element
           )
         }}
       >
-        {failed ? 'Try again' : copied ? 'Copied' : 'Copy'}
+        {failed ? 'Intentar de nuevo' : copied ? 'Copiado' : 'Copiar'}
       </Button>
     </div>
   )

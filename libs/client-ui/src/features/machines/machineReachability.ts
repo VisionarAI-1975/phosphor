@@ -89,7 +89,7 @@ export function machineReachability(
   // The Host is checking in, so restarting it is not the fix: the path between the two is.
   return {
     ok: false,
-    short: 'Not reachable',
+    short: 'No accesible',
     detail: `${label} is online, but this computer cannot reach it. Check that Tailscale is on here and that both computers are on the same tailnet.`,
   }
 }
@@ -109,7 +109,7 @@ export function machineHeadline(
 ): Headline {
   const reach = machineReachability(machine, connection?.state, now, connection?.lastError)
   if (reach.ok) return { ...reach, tone: 'ok', label: 'Connected' }
-  if (!machine.lastSeenAt) return { ...reach, tone: 'pending', label: 'Waiting for setup' }
+  if (!machine.lastSeenAt) return { ...reach, tone: 'pending', label: 'Esperando la configuración' }
   if (machineStatus(machine, now) === 'down') {
     const stopping =
       machine.state === 'stopping' &&
@@ -121,6 +121,6 @@ export function machineHeadline(
   return {
     ...reach,
     tone: 'warn',
-    label: reach.short === 'Not reachable yet' ? 'Not reachable' : reach.short,
+    label: reach.short === 'Not reachable yet' ? 'No accesible' : reach.short,
   }
 }

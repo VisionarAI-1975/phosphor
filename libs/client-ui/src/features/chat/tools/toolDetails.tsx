@@ -248,7 +248,7 @@ export function GenericDetail({ tool }: { tool: ToolState }): React.JSX.Element 
             </div>
           )}
           <pre className="max-h-80 overflow-auto px-3 py-2.5 font-mono text-base leading-relaxed break-words whitespace-pre-wrap">
-            {text || <Placeholder text={running ? 'Running…' : '(no output)'} />}
+            {text || <Placeholder text={running ? 'En ejecución…' : '(no output)'} />}
           </pre>
         </>
       )}

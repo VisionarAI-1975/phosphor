@@ -262,7 +262,7 @@ it.each(['prompt', 'abort'] as const)(
       const click = () =>
         (
           el.querySelector(
-            `button[aria-label="${action === 'prompt' ? 'Send message' : 'Stop'}"]`,
+            `button[aria-label="${action === 'prompt' ? 'Send message' : 'Detener'}"]`,
           ) as HTMLButtonElement
         ).click()
       await act(async () => click())

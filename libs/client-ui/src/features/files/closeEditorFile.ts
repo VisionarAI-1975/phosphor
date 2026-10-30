@@ -21,7 +21,7 @@ export function closeEditorFile(workspace: string, path: string): Promise<boolea
         message: 'Your changes will be lost if you close without saving.',
         choices: [
           { value: 'discard', label: 'Don’t Save' },
-          { value: 'save', label: 'Save', primary: true },
+          { value: 'save', label: 'Guardar', primary: true },
         ],
       })
       if (!choice) return false

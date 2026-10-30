@@ -77,32 +77,32 @@ export function AgentTab(): React.JSX.Element {
   /** Label for "no explicit value here": inherited value in project scope. */
   const fallbackLabel = (key: string): string => {
     const value = inherited[key]
-    return typeof value === 'string' && value ? `inherits "${value}"` : '(pi default)'
+    return typeof value === 'string' && value ? `hereda "${value}"` : '(predeterminado de pi)'
   }
 
   return (
     <div>
-      <SectionTitle>Agent defaults</SectionTitle>
+      <SectionTitle>Valores del agente</SectionTitle>
       <p className="text-text-tertiary -mt-2 mb-4 text-base">
-        Writes pi&apos;s <code className="font-mono">settings.json</code>. Changes apply to{' '}
-        <b>new</b> sessions (pi reads config at spawn).{saving ? ' Saving…' : ''}
+        Escribe el <code className="font-mono">settings.json</code> de pi. Los cambios se aplican a{' '}
+        <b>new</b> sessions (pi reads config at spawn).{saving ? ' Guardando…' : ''}
       </p>
 
       {blocked && (
         <div className="bg-danger-soft border-danger/30 mb-4 rounded-lg border px-3.5 py-3 text-base">
           <div className="text-danger font-medium">
-            This {scope === 'global' ? 'global' : 'workspace'} settings.json is not valid JSON.
+            Este settings.json de {scope === 'global' ? 'global' : 'espacio de trabajo'} no es JSON válido.
           </div>
           <div className="text-text-secondary mt-1 leading-relaxed">
-            Editing is disabled so Phosphor cannot overwrite and lose your existing configuration.
-            pi also ignores the broken file and falls back to its defaults.
+            La edición está deshabilitada para que Phosphor no sobrescriba y pierda tu configuración
+            existente. pi también ignora el archivo roto y vuelve a sus valores predeterminados.
             {health?.error ? ` (${health.error})` : ''}
           </div>
           <TooltipButton
             onClick={() => useSettingsUiStore.getState().setTab('advanced')}
             className="border-danger/40 text-danger hover:bg-danger/10 mt-2 rounded-md border px-2.5 py-1 text-sm font-medium transition-colors"
           >
-            Fix it in Advanced →
+            Córrigelo en Avanzado →
           </TooltipButton>
         </div>
       )}
@@ -110,18 +110,18 @@ export function AgentTab(): React.JSX.Element {
       {/* Scope stays enabled even when a file is broken, so you can inspect
           the other scope. */}
       <Row
-        title="Scope"
-        description="Global (~/.pi/agent) or an override for this workspace (.pi/settings.json)."
+        title="Ámbito"
+        description="Global (~/.pi/agent) o una anulación para este espacio de trabajo (.pi/settings.json)."
       >
         <div
           className="border-border flex overflow-hidden rounded-lg border"
           role="group"
-          aria-label="Settings scope"
+          aria-label="Ámbito de los ajustes"
         >
           {(
             [
               { value: 'global', label: 'Global' },
-              { value: 'project', label: 'Project' },
+              { value: 'project', label: 'Proyecto' },
             ] as const
           ).map(({ value, label }) => (
             <TooltipButton
@@ -146,7 +146,7 @@ export function AgentTab(): React.JSX.Element {
         disabled={blocked}
         className={clsx('contents', blocked && 'pointer-events-none opacity-50')}
       >
-        <Row title="Default model" description='e.g. "claude-sonnet-4-5" or a models.json id.'>
+        <Row title="Modelo predeterminado" description='p. ej. "claude-sonnet-4-5" o un id de models.json.'>
           <TextField
             defaultValue={(settings?.defaultModel as string) ?? ''}
             placeholder={fallbackLabel('defaultModel')}
@@ -154,8 +154,8 @@ export function AgentTab(): React.JSX.Element {
           />
         </Row>
         <Row
-          title="Default provider"
-          description='e.g. "anthropic", "openai", or a custom provider.'
+          title="Proveedor predeterminado"
+          description='p. ej. "anthropic", "openai", o un proveedor personalizado.'
         >
           <TextField
             defaultValue={(settings?.defaultProvider as string) ?? ''}
@@ -164,7 +164,7 @@ export function AgentTab(): React.JSX.Element {
           />
         </Row>
         <Row
-          title="Default thinking level"
+          title="Nivel de razonamiento predeterminado"
           description="off · minimal · low · medium · high · xhigh · max"
         >
           <select
@@ -181,22 +181,22 @@ export function AgentTab(): React.JSX.Element {
           </select>
         </Row>
         <Row
-          title="Hide thinking blocks"
-          description="Collapse model reasoning out of the transcript."
+          title="Ocultar bloques de razonamiento"
+          description="Colapsa el razonamiento del modelo fuera de la transcripción."
         >
           <Toggle
             on={(settings?.hideThinkingBlock ?? inherited.hideThinkingBlock) === true}
             onChange={(on) => void patch({ hideThinkingBlock: on })}
           />
         </Row>
-        <Row title="Steering delivery" description="How queued steering messages are injected.">
+        <Row title="Entrega de dirección" description="Cómo se inyectan los mensajes de dirección encolados.">
           <ModeSelect
             value={(settings?.steeringMode as string) ?? ''}
             fallback={fallbackLabel('steeringMode')}
             onChange={(v) => void patch({ steeringMode: v || undefined })}
           />
         </Row>
-        <Row title="Follow-up delivery" description="How queued follow-ups are injected.">
+        <Row title="Entrega de seguimientos" description="Cómo se inyectan los seguimientos encolados.">
           <ModeSelect
             value={(settings?.followUpMode as string) ?? ''}
             fallback={fallbackLabel('followUpMode')}
@@ -204,17 +204,17 @@ export function AgentTab(): React.JSX.Element {
           />
         </Row>
 
-        <SectionTitle small>Compaction</SectionTitle>
+        <SectionTitle small>Compactación</SectionTitle>
         <Row
-          title="Auto-compaction"
-          description="Compact context automatically near the window limit, or at the context budget below if that comes first."
+          title="Auto-compactación"
+          description="Compacta el contexto automáticamente cerca del límite de ventana, o en el presupuesto de contexto de abajo si llega antes."
         >
           <Toggle
             on={(compaction.enabled ?? inheritedCompaction.enabled) !== false}
             onChange={(on) => void patch({ compaction: { enabled: on } })}
           />
         </Row>
-        <Row title="Reserve tokens" description="Headroom kept free for the model's response.">
+        <Row title="Tokens de reserva" description="Margen que se mantiene libre para la respuesta del modelo.">
           <NumberField
             value={Number(compaction.reserveTokens ?? inheritedCompaction.reserveTokens ?? 16384)}
             min={1024}
@@ -224,8 +224,8 @@ export function AgentTab(): React.JSX.Element {
           />
         </Row>
         <Row
-          title="Keep recent tokens"
-          description="Recent conversation preserved verbatim during compaction."
+          title="Mantener tokens recientes"
+          description="Conversación reciente que se conserva textualmente durante la compactación."
         >
           <NumberField
             value={Number(
@@ -247,17 +247,17 @@ export function AgentTab(): React.JSX.Element {
         disabled={blocked}
         className={clsx('contents', blocked && 'pointer-events-none opacity-50')}
       >
-        <SectionTitle small>Auto-retry</SectionTitle>
+        <SectionTitle small>Auto-reintento</SectionTitle>
         <Row
-          title="Retry on transient errors"
-          description="Overloaded / rate-limit / 5xx responses."
+          title="Reintentar ante errores transitorios"
+          description="Respuestas de sobrecarga / límite de tasa / 5xx."
         >
           <Toggle
             on={(retry.enabled ?? inheritedRetry.enabled) !== false}
             onChange={(on) => void patch({ retry: { enabled: on } })}
           />
         </Row>
-        <Row title="Max retries" description="Attempts before giving up.">
+        <Row title="Reintentos máximos" description="Intentos antes de rendirse.">
           <NumberField
             value={Number(retry.maxRetries ?? inheritedRetry.maxRetries ?? 3)}
             min={1}
@@ -266,7 +266,7 @@ export function AgentTab(): React.JSX.Element {
             onChange={(v) => void patch({ retry: { maxRetries: v } })}
           />
         </Row>
-        <Row title="Base delay (ms)" description="First retry delay; grows exponentially.">
+        <Row title="Retardo base (ms)" description="Retardo del primer reintento; crece exponencialmente.">
           <NumberField
             value={Number(retry.baseDelayMs ?? inheritedRetry.baseDelayMs ?? 2000)}
             min={250}

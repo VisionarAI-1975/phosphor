@@ -129,7 +129,7 @@ function MachineHeaderActions({
               onCheck()
             }}
           >
-            {checking ? 'Checking…' : 'Check again'}
+            {checking ? 'Checking…' : 'Comprobar de nuevo'}
           </MenuRow>
         </PopupMenu>
       )}

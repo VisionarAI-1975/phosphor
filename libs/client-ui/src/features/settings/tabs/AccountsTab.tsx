@@ -259,7 +259,7 @@ function ProviderRow({
               disabled={disabled}
               onClick={() => void onSignIn(provider.id)}
             >
-              {ready ? 'Sign in again' : 'Sign in'}
+              {ready ? 'Sign in again' : 'Iniciar sesión'}
             </Button>
           )}
         </div>

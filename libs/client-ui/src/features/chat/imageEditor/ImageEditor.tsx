@@ -644,7 +644,7 @@ export function ImageEditor({
                 disabled={!history || saving}
                 onClick={() => void done()}
               >
-                {saving ? 'Saving…' : 'Done'}
+                {saving ? 'Guardando…' : 'Listo'}
               </Button>
             </>
           )}

@@ -39,7 +39,7 @@ export function notifyLane(
       firstUserText:
         (firstUser?.kind === 'user' ? firstUser.text : undefined) ?? scanned?.firstUserText,
     }) ??
-    'Untitled lane'
+    'Carril sin título'
   const marker = laneMarker(
     live.diskPath ? sessions.laneMarkers[live.diskPath] : undefined,
     sessions.gitByCwd[live.workspacePath]?.branch,
@@ -88,7 +88,7 @@ export function noticeLaneSettled(
     workspacePath: live?.workspacePath,
     items,
     tools: settledChat?.tools ?? chat?.tools ?? {},
-    title: chat?.meta?.sessionName ?? 'Untitled lane',
+    title: chat?.meta?.sessionName ?? 'Carril sin título',
     repository:
       (live
         ? (useSessionsStore.getState().gitByCwd[live.workspacePath]?.mainRepoPath ??

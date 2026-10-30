@@ -139,22 +139,22 @@ it('lists the shared lane actions in the sheet, with the same hints as every lan
   expect(
     rows.map((b) => b.querySelector('span:not(.action-sheet-icon) > span')?.textContent),
   ).toEqual([
-    'Rename',
+    'Renombrar',
     'Take control',
-    'Stop',
+    'Detener',
     'Mark read',
-    'Pin',
+    'Fijar',
     'Lane marker',
     'Copy debug info',
     'Copy spend',
-    'Delete',
+    'Eliminar',
     `New lane on ${MOCK_HOST_ID}`,
   ])
   const row = (label: string) => rows.find((b) => b.textContent?.startsWith(label))!
-  expect(row('Delete').disabled).toBe(true)
-  expect(row('Delete').textContent).toContain('Take control first.')
-  expect(row('Pin').disabled).toBe(true)
-  expect(row('Pin').textContent).toContain('Update this Host')
+  expect(row('Eliminar').disabled).toBe(true)
+  expect(row('Eliminar').textContent).toContain('Take control first.')
+  expect(row('Fijar').disabled).toBe(true)
+  expect(row('Fijar').textContent).toContain('Update this Host')
 })
 
 it('lets the controller delete the lane from the sheet (regression)', () => {
@@ -192,8 +192,8 @@ it('shows Session options in the lane sheet, disabled for a reader (regression)'
     expect(sessionRow(label)?.disabled, label).toBe(true)
     expect(sessionRow(label)?.textContent, label).toContain('Take control first.')
   }
-  expect(sessionRow('Export')?.disabled).toBe(true)
-  expect(sessionRow('Export')?.textContent).toContain('Not available on remote lanes yet.')
+  expect(sessionRow('Exportar')?.disabled).toBe(true)
+  expect(sessionRow('Exportar')?.textContent).toContain('Not available on remote lanes yet.')
 })
 
 it("sends the controller's Compact now from the lane sheet through pi (regression)", async () => {
@@ -204,7 +204,7 @@ it("sends the controller's Compact now from the lane sheet through pi (regressio
   render()
   act(() => button(/^Lane menu/)!.click())
   expect(sessionRow('Auto-retry')?.disabled).toBe(false)
-  expect(sessionRow('Export')?.disabled).toBe(true)
+  expect(sessionRow('Exportar')?.disabled).toBe(true)
   await act(async () => sessionRow('Compact now')?.click())
   expect(sheet()?.getAttribute('aria-label')).not.toBe('Lane menu')
   const request = usePromptStore.getState().requests[0]

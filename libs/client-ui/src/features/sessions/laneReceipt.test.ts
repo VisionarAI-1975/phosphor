@@ -109,7 +109,7 @@ it('includes queued prompts in the same measured run rather than only the final 
       id: 'a2',
       kind: 'assistant',
       streaming: false,
-      blocks: [{ type: 'text', text: 'Done', index: 0, closed: true }],
+      blocks: [{ type: 'text', text: 'Listo', index: 0, closed: true }],
     },
   ]
   const tool: ToolState = {
@@ -131,5 +131,5 @@ it('includes queued prompts in the same measured run rather than only the final 
       startedAt: 20,
       settledAt: 50,
     }),
-  ).toMatchObject({ files: 1, added: 1, durationMs: 30, excerpt: 'Done' })
+  ).toMatchObject({ files: 1, added: 1, durationMs: 30, excerpt: 'Listo' })
 })

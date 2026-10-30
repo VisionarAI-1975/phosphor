@@ -31,7 +31,7 @@ export function JobOutput({
           )}
         />
         <span className="text-text-tertiary text-sm">
-          {running ? 'Running…' : exitCode === 0 ? 'Done' : `Failed (exit ${exitCode})`}
+          {running ? 'En ejecución…' : exitCode === 0 ? 'Listo' : `Falló (código de salida ${exitCode})`}
         </span>
       </div>
       <pre

@@ -297,7 +297,7 @@ export const SETTINGS_INDEX: SettingEntry[] = [
     ['Signed in', 'github user sign out log out'],
     ['Not signed in', 'github sign in login'],
   ]),
-  ...section('install', null, [['Install', 'pwa home screen app']]),
+  ...section('install', null, [['Instalar', 'pwa home screen app']]),
   ...section('install', ['Notifications', 'push alerts attention']),
   ...section('about', null, [
     ['Phosphor version', 'release', 'appInfo'],

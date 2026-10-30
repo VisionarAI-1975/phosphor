@@ -256,7 +256,7 @@ function ExplorerRow({
         onClick: () => runFileAction(renameEntry(workspacePath, entry)),
       },
       {
-        label: 'Delete',
+        label: 'Eliminar',
         disabled:
           controls.busy ||
           (controls.selected.length > 1 && controls.selected.some((e) => e.path === entry.path)),

@@ -103,20 +103,20 @@ export function useExplorer(workspace: string) {
   }
   const menu = (entry?: DirEntry): ContextMenuItem[] => [
     {
-      label: 'Copy',
+      label: 'Copiar',
       shortcut: formatShortcut('mod', 'C'),
       disabled: busy || !selection(entry).length,
       separatorAbove: true,
       onClick: () => run(() => copy(false, entry)),
     },
     {
-      label: 'Cut',
+      label: 'Cortar',
       shortcut: formatShortcut('mod', 'X'),
       disabled: busy || !selection(entry).length,
       onClick: () => run(() => copy(true, entry)),
     },
     {
-      label: 'Paste',
+      label: 'Pegar',
       shortcut: formatShortcut('mod', 'V'),
       disabled: busy,
       onClick: () => run(() => pasteFiles(workspace, entryDirectory(workspace, entry))),

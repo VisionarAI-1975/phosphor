@@ -37,7 +37,7 @@ describe('prompt store', () => {
   })
 
   it('presentText resolves when the display dialog is closed', async () => {
-    const pending = presentText({ title: 'Copy', text: 'debug info' })
+    const pending = presentText({ title: 'Copiar', text: 'debug info' })
     expect(head().kind).toBe('display')
     expect(head().text).toBe('debug info')
     usePromptStore.getState().dismiss(head(), undefined)

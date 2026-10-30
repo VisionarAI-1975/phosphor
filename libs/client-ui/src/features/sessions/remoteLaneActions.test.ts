@@ -57,19 +57,19 @@ describe('remoteLaneActions', () => {
     const all = remoteLaneActions(state({ pr: { number: 7 } }), handlers())
     expect(all.map((entry) => entry.label)).toEqual([
       'Open pull request #7',
-      'Open',
-      'Rename',
+      'Abrir',
+      'Renombrar',
       'Release control',
-      'Stop',
+      'Detener',
       'Mark read',
-      'Pin',
+      'Fijar',
       'Lane marker',
       'Copy debug info',
       'Copy spend',
-      'Delete',
+      'Eliminar',
     ])
     const own = remoteLaneActions(state(), { ...handlers(), open: undefined })
-    expect(own.map((entry) => entry.label)).not.toContain('Open')
+    expect(own.map((entry) => entry.label)).not.toContain('Abrir')
   })
 
   it('routes each item to its handler', () => {
@@ -83,31 +83,31 @@ describe('remoteLaneActions', () => {
 
   it('tells a reader to take control first and keeps reader actions open', () => {
     const items = remoteLaneActions(state({}, false), handlers())
-    for (const label of ['Rename', 'Stop', 'Delete']) {
+    for (const label of ['Renombrar', 'Detener', 'Eliminar']) {
       expect(item(items, label)?.disabled, label).toBe(true)
       expect(item(items, label)?.hint, label).toBe(TAKE_CONTROL_FIRST)
     }
     expect(item(items, 'Take control')?.disabled).toBe(false)
     expect(item(items, 'Mark read')?.disabled).toBe(false)
-    expect(item(items, 'Pin')?.disabled).toBe(false)
+    expect(item(items, 'Fijar')?.disabled).toBe(false)
   })
 
   it('explains Stop until a first message, and offers Resume on a stopped lane', () => {
     const blocked = 'Send a first message before stopping this lane.'
     const running = remoteLaneActions(state({ stopBlocked: blocked }), handlers())
-    expect(item(running, 'Stop')).toMatchObject({ disabled: true, hint: blocked })
+    expect(item(running, 'Detener')).toMatchObject({ disabled: true, hint: blocked })
     const stopped = remoteLaneActions(
       state({ stopBlocked: blocked, lane: { ...state().lane, activity: 'stopped' } }),
       handlers(),
     )
-    expect(item(stopped, 'Resume')).toMatchObject({ disabled: false, hint: undefined })
-    expect(item(stopped, 'Rename')?.hint).toBe(ONLY_WHILE_RUNNING)
+    expect(item(stopped, 'Reanudar')).toMatchObject({ disabled: false, hint: undefined })
+    expect(item(stopped, 'Renombrar')?.hint).toBe(ONLY_WHILE_RUNNING)
   })
 
   it('names one obstacle for Pin and Lane marker: not ready, an old Host, then no control', () => {
     const marks = (edit: Partial<RemoteLaneActionState>) => {
       const items = remoteLaneActions(state(edit), handlers())
-      return [item(items, 'Pin')?.hint, item(items, 'Lane marker')?.hint]
+      return [item(items, 'Fijar')?.hint, item(items, 'Lane marker')?.hint]
     }
     expect(marks({ ready: false })).toEqual([REMOTE_NOT_READY, REMOTE_NOT_READY])
     expect(marks({ host: { capabilities: ['sessions.control'] } })).toEqual([
@@ -127,6 +127,6 @@ describe('remoteLaneActions', () => {
       state({ host: { capabilities: ['sessions.read', 'sessions.control'], laneMarks: true } }),
       handlers(),
     )
-    expect(item(items, 'Delete')).toMatchObject({ disabled: true, hint: REMOTE_UNAVAILABLE })
+    expect(item(items, 'Eliminar')).toMatchObject({ disabled: true, hint: REMOTE_UNAVAILABLE })
   })
 })

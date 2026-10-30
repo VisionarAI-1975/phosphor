@@ -33,7 +33,7 @@ export function AddHostConnector({
                 Cancel
               </Button>
               <Button variant="primary" disabled={busy} onClick={() => void save()}>
-                {busy ? 'Saving…' : 'Review and add'}
+                {busy ? 'Guardando…' : 'Review and add'}
               </Button>
             </>
           }

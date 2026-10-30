@@ -75,7 +75,7 @@ export function MachineModelDefaults({
         </label>
         <div className="flex justify-end">
           <Button disabled={busy || !controller.validModel} onClick={() => void saveModel()}>
-            {settings.saving ? 'Saving…' : 'Review model defaults'}
+            {settings.saving ? 'Guardando…' : 'Review model defaults'}
           </Button>
         </div>
       </div>

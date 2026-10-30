@@ -391,7 +391,7 @@ describe('summarizeTool', () => {
 
 describe('partialStringArg', () => {
   it('reads a completed string value out of a truncated payload', () => {
-    expect(partialStringArg('{"title": "Done", "content": "unfinis', 'title')).toBe('Done')
+    expect(partialStringArg('{"title": "Done", "content": "unfinis', 'title')).toBe('Listo')
   })
 
   it('tolerates no whitespace and other keys first', () => {

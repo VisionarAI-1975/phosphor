@@ -41,21 +41,21 @@ export function WorkspacePicker({ piVersion }: { piVersion?: string }): React.JS
           aria-busy={picking}
           className="shadow-sm"
         >
-          {picking ? 'Opening…' : 'Open Folder…'}
+          {picking ? 'Abriendo…' : 'Abrir carpeta…'}
         </Button>
 
         <TooltipButton
           onClick={() => void openSandbox()}
           className="text-text-secondary hover:text-text -mt-4 cursor-pointer text-base underline-offset-4 transition-colors hover:underline"
-          title="Start in a fresh sandbox folder that belongs to no project"
+          title="Empezar en una carpeta sandbox nueva que no pertenece a ningún proyecto"
         >
-          or start without a folder
+          o empezar sin carpeta
         </TooltipButton>
 
         {recents.length > 0 && (
           <div className="w-full max-w-md">
             <div className="text-text-tertiary mb-2 text-base font-medium uppercase tracking-wider">
-              Recent workspaces
+              Espacios de trabajo recientes
             </div>
             <div className="bg-surface border-border overflow-hidden rounded-lg border">
               {recents.slice(0, 6).map((ws) => (

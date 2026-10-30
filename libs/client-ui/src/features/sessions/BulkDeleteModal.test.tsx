@@ -66,7 +66,7 @@ describe('BulkDeleteProgressPopover', () => {
     expect(toggle.getAttribute('aria-expanded')).toBe('true')
     expect(document.body.textContent).toContain('First lane')
     expect(document.body.textContent).toContain('Second lane')
-    expect(document.body.textContent).toContain('Stop')
+    expect(document.body.textContent).toContain('Detener')
   })
 
   it('collapses on completion, then fades and dismisses itself', () => {

@@ -29,7 +29,7 @@ export function HostDefaultPackages({
                 <p className="text-text-secondary text-base">{entry.description}</p>
               </div>
               <StatusPill tone={pkg?.installed ? 'ok' : 'off'}>
-                {pkg?.installed ? 'Installed' : 'Not installed'}
+                {pkg?.installed ? 'Instalado' : 'Not installed'}
               </StatusPill>
               {!pkg?.installed && (
                 <Button

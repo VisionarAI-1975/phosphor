@@ -50,7 +50,7 @@ export async function createIn(
 }
 
 export async function renameEntry(workspacePath: string, entry: DirEntry): Promise<void> {
-  const name = await promptText({ title: 'Rename', initialValue: entry.name })
+  const name = await promptText({ title: 'Renombrar', initialValue: entry.name })
   if (!name || name === entry.name) return
   const dir = dirname(entry.path)
   const target = entryPath(dir, name)

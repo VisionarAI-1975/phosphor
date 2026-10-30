@@ -13,46 +13,46 @@ import { FORMATTING_ACTIONS, formattingKeys } from '@/features/chat/composer/for
 export type Binding = [parts: string[], action: string]
 
 const APP: Binding[] = [
-  [['F6'], 'Focus composer / pane controls'],
-  [['mod', 'N'], 'New session'],
-  [['mod', 'K'], 'Command palette'],
-  [['mod', 'P'], 'Go to file'],
-  [['mod', 'F'], 'Find in session or artifact'],
-  [['mod', 'shift', 'F'], 'Search in workspace files'],
-  [['mod', 'B'], 'Toggle sidebar'],
-  [['mod', '`'], 'Toggle terminal pane'],
-  [['mod', 'shift', 'E'], 'Toggle files pane'],
-  [['mod', 'shift', 'G'], 'Toggle changes pane'],
-  [['mod', ','], 'Settings'],
-  [['mod', '/'], 'This shortcut list'],
-  [['mod', '+'], 'Zoom in'],
-  [['mod', '-'], 'Zoom out'],
-  [['mod', '0'], 'Reset zoom'],
+  [['F6'], 'Enfocar composer / controles del panel'],
+  [['mod', 'N'], 'Nueva sesión'],
+  [['mod', 'K'], 'Paleta de comandos'],
+  [['mod', 'P'], 'Ir al archivo'],
+  [['mod', 'F'], 'Buscar en sesión o artefacto'],
+  [['mod', 'shift', 'F'], 'Buscar en archivos del espacio de trabajo'],
+  [['mod', 'B'], 'Mostrar/ocultar barra lateral'],
+  [['mod', '`'], 'Mostrar/ocultar panel de terminal'],
+  [['mod', 'shift', 'E'], 'Mostrar/ocultar panel de archivos'],
+  [['mod', 'shift', 'G'], 'Mostrar/ocultar panel de cambios'],
+  [['mod', ','], 'Ajustes'],
+  [['mod', '/'], 'Esta lista de atajos'],
+  [['mod', '+'], 'Ampliar'],
+  [['mod', '-'], 'Reducir'],
+  [['mod', '0'], 'Restablecer zoom'],
 ]
 
 const CHAT: Binding[] = [
-  [['Enter'], 'Send prompt (steer while streaming)'],
-  [['alt', 'Enter'], 'Queue follow-up while streaming'],
-  [['mod', 'Enter'], 'Queue follow-up while streaming (alternative)'],
-  [['shift', 'Enter'], 'Newline / continue list in composer'],
-  [['mod', 'shift', 'X'], 'Expand / collapse focused composer'],
-  [['mod', 'Z'], 'Undo input edit'],
-  [['mod', 'shift', 'Z'], 'Redo input edit'],
-  [['Tab / Shift+Tab'], 'Indent / outdent a list; otherwise move focus'],
-  [['Esc'], 'Stop the agent / close overlays'],
-  [['Esc Esc'], 'Rewind to an earlier message'],
-  [['↑'], 'Previous prompt (empty composer)'],
-  [['↓'], 'Next prompt'],
-  [['ctrl', 'O'], 'Expand / collapse tool output'],
+  [['Enter'], 'Enviar prompt (dirigir mientras transmite)'],
+  [['alt', 'Enter'], 'Encolar seguimiento mientras transmite'],
+  [['mod', 'Enter'], 'Encolar seguimiento mientras transmite (alternativa)'],
+  [['shift', 'Enter'], 'Nueva línea / continuar lista en el composer'],
+  [['mod', 'shift', 'X'], 'Expandir / contraer el composer enfocado'],
+  [['mod', 'Z'], 'Deshacer edición de entrada'],
+  [['mod', 'shift', 'Z'], 'Rehacer edición de entrada'],
+  [['Tab / Shift+Tab'], 'Indentar / desindentar una lista; si no, mover el foco'],
+  [['Esc'], 'Detener el agente / cerrar superposiciones'],
+  [['Esc Esc'], 'Retroceder a un mensaje anterior'],
+  [['↑'], 'Prompt anterior (composer vacío)'],
+  [['↓'], 'Prompt siguiente'],
+  [['ctrl', 'O'], 'Expandir / contraer salida de herramienta'],
 ]
 
 const EDITOR: Binding[] = [
-  [['mod', 'S'], 'Save file in editor'],
-  [['mod', 'alt', 'S'], 'Save all open files (Files pane)'],
-  [['mod', 'W'], 'Close editor tab (Files pane)'],
-  [['mod', 'shift', 'T'], 'Reopen closed editor tab (Files pane)'],
-  [['ctrl', 'Tab'], 'Next editor tab (Shift reverses)'],
-  [['mod', 'F'], 'Find in editor / terminal'],
+  [['mod', 'S'], 'Guardar archivo en el editor'],
+  [['mod', 'alt', 'S'], 'Guardar todos los archivos abiertos (panel de archivos)'],
+  [['mod', 'W'], 'Cerrar pestaña del editor (panel de archivos)'],
+  [['mod', 'shift', 'T'], 'Reabrir pestaña cerrada del editor (panel de archivos)'],
+  [['ctrl', 'Tab'], 'Siguiente pestaña del editor (Shift invierte)'],
+  [['mod', 'F'], 'Buscar en el editor / terminal'],
 ]
 
 /*
@@ -63,16 +63,16 @@ const EDITOR: Binding[] = [
 function clipboardBindings(): Binding[] {
   const mod = clipboardModifiers(hostPlatform())
   return [
-    [[...mod, 'C'], 'Copy terminal selection'],
-    [[...mod, 'V'], 'Paste into terminal'],
+    [[...mod, 'C'], 'Copiar selección de terminal'],
+    [[...mod, 'V'], 'Pegar en la terminal'],
   ]
 }
 
 /** Settings → Writing → Autocomplete. Taking one word is ⌥→ on macOS, Ctrl+→ elsewhere. */
 function autocompleteBindings(): Binding[] {
   return [
-    [['Tab / →'], 'Accept autocomplete suggestion'],
-    [[hostPlatform() === 'darwin' ? 'alt' : 'ctrl', '→'], 'Accept one word of the suggestion'],
+    [['Tab / →'], 'Aceptar sugerencia de autocompletado'],
+    [[hostPlatform() === 'darwin' ? 'alt' : 'ctrl', '→'], 'Aceptar una palabra de la sugerencia'],
   ]
 }
 
@@ -82,13 +82,13 @@ export function keybindingGroups(): Array<{ title: string; bindings: Binding[] }
     { title: 'App', bindings: APP },
     { title: 'Chat', bindings: [...CHAT, ...autocompleteBindings()] },
     {
-      title: 'Formatting',
+      title: 'Formato',
       bindings: FORMATTING_ACTIONS.map<Binding>((binding) => [
         formattingKeys(binding),
         binding.label,
       ]),
     },
-    { title: 'Editor & terminal', bindings: [...EDITOR, ...clipboardBindings()] },
+    { title: 'Editor y terminal', bindings: [...EDITOR, ...clipboardBindings()] },
   ]
 }
 
@@ -96,8 +96,9 @@ export function KeybindingsTab(): React.JSX.Element {
   return (
     <div className="space-y-5">
       <p className="text-text-secondary text-base">
-        App navigation works from the composer; Go to file also works from the editor. Dialogs block
-        app navigation; zoom still works. In a fullscreen pane, F6 focuses its exit control.
+        La navegación de la app funciona desde el composer; Ir al archivo también desde el editor. Los
+        diálogos bloquean la navegación; el zoom sigue funcionando. En un panel a pantalla completa,
+        F6 enfoca su control de salida.
       </p>
       {keybindingGroups().map((group) => (
         <Group key={group.title} {...group} />

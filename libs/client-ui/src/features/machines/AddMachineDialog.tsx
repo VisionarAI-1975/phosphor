@@ -125,7 +125,7 @@ export function AddMachineDialog({ onClose }: { onClose: () => void }): React.JS
                     }
                   }}
                 >
-                  {step === 'before' ? 'Cancel' : 'Back'}
+                  {step === 'before' ? 'Cancelar' : 'Back'}
                 </Button>
                 <Button
                   variant="primary"
@@ -161,7 +161,7 @@ export function AddMachineDialog({ onClose }: { onClose: () => void }): React.JS
               aria-label="Setup steps"
               className="text-text-tertiary flex flex-wrap gap-3 text-sm"
             >
-              {['Before you start', 'Install', 'Online', 'Providers'].map((title, index) => (
+              {['Before you start', 'Instalar', 'Online', 'Providers'].map((title, index) => (
                 <li
                   key={title}
                   aria-current={stepIndex === index ? 'step' : undefined}

@@ -162,7 +162,7 @@ export function MachinesPage(): React.JSX.Element {
                 {accountError ?? error ?? controlMessage(state.error ?? 'offline')}
               </span>
               <Button size="xs" disabled={state.loading} onClick={() => void state.refresh()}>
-                {state.loading ? 'Retrying…' : 'Retry'}
+                {state.loading ? 'Reintentando…' : 'Reintentar'}
               </Button>
             </div>
           )}

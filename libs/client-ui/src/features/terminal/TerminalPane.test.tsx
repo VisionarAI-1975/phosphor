@@ -85,6 +85,6 @@ it('viewer empty list failure shows the fixed message without an automatic retry
   })
   expect(container.textContent).toContain('Read-only: no terminals available.')
   expect(container.textContent).toContain('Read-only. Take control to send messages.')
-  expect(container.textContent).not.toContain('Retry')
+  expect(container.textContent).not.toContain('Reintentar')
   expect(invoke).toHaveBeenCalledTimes(1)
 })

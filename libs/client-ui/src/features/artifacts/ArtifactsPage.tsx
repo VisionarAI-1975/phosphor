@@ -199,7 +199,7 @@ function ArtifactRow({
     sessionTitle({
       explicitName: liveName ?? row.sessionName,
       firstUserText: row.firstUserText,
-    }) ?? 'Untitled session'
+    }) ?? 'Sesión sin título'
 
   const open = async (): Promise<void> => {
     if (!row.phosphorId && (row.sessionDeleted || !row.workspaceExists)) {

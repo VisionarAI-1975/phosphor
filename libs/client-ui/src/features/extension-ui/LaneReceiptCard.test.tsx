@@ -40,7 +40,7 @@ const toast = (): Toast => ({
       removed: 1,
       tests: 'passed',
       artifacts: 1,
-      excerpt: 'Done',
+      excerpt: 'Listo',
       outcome: 'done',
     },
   },
@@ -85,7 +85,7 @@ it('renders receipt facts and hides empty facts independently', async () => {
   facts.excerpt = 'failed'
   await act(async () => root.render(<LaneReceiptCard toast={t} />))
   expect(container.textContent).toContain('Stopped: failed')
-  expect(container.textContent).toContain('Retry')
+  expect(container.textContent).toContain('Reintentar')
   expect(container.querySelector('button[aria-label="Open lane: Lane"]')).not.toBeNull()
   await act(async () => root.unmount())
 })

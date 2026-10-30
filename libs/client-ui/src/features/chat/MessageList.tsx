@@ -358,7 +358,7 @@ export const MessageList = memo(function MessageList({
         active={matches.active}
         capped={matches.capped}
         onStep={matches.step}
-        placeholder="Find in session"
+        placeholder="Buscar en la sesión"
         testId="transcript-find"
       />
       {/* tabIndex makes the scroller focusable so PageUp/ArrowUp/Home actually

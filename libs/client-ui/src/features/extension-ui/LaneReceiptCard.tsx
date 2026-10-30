@@ -38,7 +38,7 @@ export function LaneReceiptCard({
   )
   const facts = receipt?.facts
   const age = receipt ? Math.max(0, Math.floor((Date.now() - Date.parse(receipt.at)) / 60000)) : 0
-  const title = toast.title ?? facts?.title ?? 'Untitled lane'
+  const title = toast.title ?? facts?.title ?? 'Carril sin título'
   const prefix = `${receipt?.machine} · `
   const label = receipt?.machineId && title.startsWith(prefix) ? title.slice(prefix.length) : title
   const stopped = facts?.outcome === 'error' || toast.kind === 'error'

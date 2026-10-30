@@ -176,7 +176,7 @@ function LaneRow({
   })
   const action = useAsyncAction()
 
-  const title = sessionTitle({ explicitName: sessionName, firstUserText }) ?? 'Untitled session'
+  const title = sessionTitle({ explicitName: sessionName, firstUserText }) ?? 'Sesión sin título'
   const folder = entry?.workspacePath ? basename(entry.workspacePath) : null
   // No session file yet means no turn has ended yet: there is nothing on disk
   // to resume, so a restart would lose the lane rather than move it.

@@ -41,7 +41,7 @@ it('shows and copies the exact one-command install, then enters the code and app
     expect(document.body.textContent).toContain('PHOSPHOR_NO_MODIFY_PATH=1')
     expect(document.body.textContent).toContain('shell startup file')
     expect(document.body.textContent).not.toContain('SSH')
-    await click('Copy')
+    await click('Copiar')
     expect(writeText).toHaveBeenCalledWith(command)
     await click('Back')
     await click('Continue to Install')

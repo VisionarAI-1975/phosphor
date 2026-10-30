@@ -68,7 +68,7 @@ function render(): void {
 }
 const buttons = (): HTMLButtonElement[] => [...document.querySelectorAll('button')]
 const trigger = (): HTMLButtonElement | undefined =>
-  buttons().find((b) => b.getAttribute('aria-label') === 'Session options')
+  buttons().find((b) => b.getAttribute('aria-label') === 'Opciones de sesión')
 const row = (label: string): HTMLButtonElement | undefined =>
   [...document.querySelectorAll<HTMLButtonElement>('[data-testid="context-menu"] button')].find(
     (b) => b.textContent?.startsWith(label),
@@ -83,7 +83,7 @@ it("sends the controller's Compact now to the lane through pi (regression)", asy
   controller(true)
   render()
   act(() => trigger()?.click())
-  await act(async () => row('Compact now')?.click())
+  await act(async () => row('Compactar ahora')?.click())
   const request = usePromptStore.getState().requests[0]
   if (request) await act(async () => usePromptStore.getState().dismiss(request, ''))
   expect(piCommand).toHaveBeenCalledWith(SESSION, { type: 'compact' })
@@ -92,18 +92,18 @@ it("sends the controller's Compact now to the lane through pi (regression)", asy
 it('disables the commands for a reader and Export on every Host lane (regression)', () => {
   render()
   act(() => trigger()?.click())
-  for (const label of ['Compact now', 'Auto-compaction', 'Auto-retry', 'Steering', 'Follow-ups']) {
+  for (const label of ['Compactar ahora', 'Auto-compactación', 'Auto-reintento', 'Dirección', 'Seguimientos']) {
     expect(row(label)?.disabled, label).toBe(true)
-    expect(row(label)?.textContent, label).toContain('Take control first.')
+    expect(row(label)?.textContent, label).toContain("Toma el control primero.")
   }
-  expect(row('Export')?.disabled).toBe(true)
-  expect(row('Export')?.textContent).toContain('Not available on remote lanes yet.')
+  expect(row('Exportar')?.disabled).toBe(true)
+  expect(row('Exportar')?.textContent).toContain('Not available on remote lanes yet.')
   act(() => {
     document.body.dispatchEvent(new MouseEvent('mousedown', { bubbles: true }))
   })
   controller(true)
   render()
   act(() => trigger()?.click())
-  expect(row('Auto-retry')?.disabled).toBe(false)
-  expect(row('Export')?.disabled).toBe(true)
+  expect(row('Auto-reintento')?.disabled).toBe(false)
+  expect(row('Exportar')?.disabled).toBe(true)
 })

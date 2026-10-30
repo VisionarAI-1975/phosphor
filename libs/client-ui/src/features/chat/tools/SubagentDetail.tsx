@@ -50,7 +50,7 @@ export function SubagentDetail({ tool }: { tool: ToolState }): React.JSX.Element
           </div>
         ) : (
           <pre className="max-h-80 overflow-auto px-3 py-2.5 font-mono text-base leading-relaxed break-words whitespace-pre-wrap">
-            {text || <span data-find-skip>{running ? 'Running…' : '(no output)'}</span>}
+            {text || <span data-find-skip>{running ? 'En ejecución…' : '(no output)'}</span>}
           </pre>
         )}
       </div>

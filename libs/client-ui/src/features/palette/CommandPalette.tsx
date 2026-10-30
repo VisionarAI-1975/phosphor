@@ -232,7 +232,7 @@ export function CommandPalette({
       for (const lane of host?.lanes ?? []) {
         base.push({
           id: `lane-${lane.laneId}`,
-          label: `Open lane: ${lane.title ?? 'Untitled lane'}`,
+          label: `Open lane: ${lane.title ?? 'Carril sin título'}`,
           run: () => {
             if (hostId) void openRemoteLane(hostId, lane.laneId)
           },

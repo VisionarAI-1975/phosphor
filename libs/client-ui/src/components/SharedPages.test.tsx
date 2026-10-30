@@ -136,7 +136,7 @@ it.each([DESKTOP_PLATFORM, COMPACT_PLATFORM])(
       'Could not read the artifact library',
     )
     const retry = [...container.querySelectorAll('button')].find(
-      (button) => button.textContent === 'Retry',
+      (button) => button.textContent === 'Reintentar',
     )
     expect(retry).toBeDefined()
     await act(async () => retry?.click())

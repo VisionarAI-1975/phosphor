@@ -57,7 +57,7 @@ it('recovers a failed first load, then recreates from the chosen source', async 
   openRestoreWorktree('/repo', meta)
   await render({ 'sessions:worktreeRecovery': load, 'sessions:recreateWorktree': recreate })
   expect(document.querySelector('[role="alert"]')?.textContent).toContain('git busy')
-  await act(async () => button('Retry').click())
+  await act(async () => button('Reintentar').click())
   const radios = [...document.querySelectorAll<HTMLInputElement>('input[type="radio"]')]
   expect(radios.map((r) => [r.value, r.checked])).toEqual([
     ['branch', true],

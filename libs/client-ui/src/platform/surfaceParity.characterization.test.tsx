@@ -158,7 +158,7 @@ it.each([false, true])(
   (self) => {
     host(self)
     const desktop = laneMenu(DESKTOP_PLATFORM, <RemoteLanes />)
-    expect(desktop.map((row) => row.label)).toContain('Delete')
+    expect(desktop.map((row) => row.label)).toContain('Eliminar')
     for (const [name, platform, list] of BROWSER_LISTS)
       expect(laneMenu(platform, list()), name).toEqual(desktop)
   },

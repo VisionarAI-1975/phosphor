@@ -734,7 +734,7 @@ export function RoutineEditor({
               onClick={() => void save(true)}
             >
               {busy
-                ? 'Saving…'
+                ? 'Guardando…'
                 : remote
                   ? `Enable on ${machine?.label ?? 'machine'}`
                   : existing

@@ -55,7 +55,7 @@ export function RemoteLaneControls({ sessionId }: { sessionId: string }): React.
           title={stopBlocked ?? undefined}
           onClick={() => void act(stopped ? 'hosts:resumeLane' : 'hosts:stopLane')}
         >
-          {stopped ? 'Resume' : 'Stop'}
+          {stopped ? 'Reanudar' : 'Detener'}
         </Button>
       )}
       {control.error && <span role="alert">{control.error}</span>}

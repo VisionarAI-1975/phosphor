@@ -89,9 +89,9 @@ export function remoteLaneActions(
   if (pr)
     items.push({ label: `Open pull request #${pr.number}`, onClick: handlers.openPullRequest })
   if (handlers.open)
-    items.push({ label: 'Open', disabled: !ready || busy, hint: notReady, onClick: handlers.open })
+    items.push({ label: 'Abrir', disabled: !ready || busy, hint: notReady, onClick: handlers.open })
   items.push({
-    label: 'Rename',
+    label: 'Renombrar',
     disabled: !controlled || !running || busy,
     hint: controlHint ?? (!running ? ONLY_WHILE_RUNNING : undefined),
     onClick: handlers.rename,
@@ -114,7 +114,7 @@ export function remoteLaneActions(
   const blocked = running ? stopBlocked : null
   items.push(
     {
-      label: running ? 'Stop' : 'Resume',
+      label: running ? 'Detener' : 'Reanudar',
       disabled: !controlled || busy || !!blocked,
       hint: controlHint ?? blocked ?? undefined,
       onClick: running ? handlers.stop : handlers.resume,
@@ -126,7 +126,7 @@ export function remoteLaneActions(
       onClick: handlers.markRead,
     },
     {
-      label: lane.pinned ? 'Unpin' : 'Pin',
+      label: lane.pinned ? 'Unpin' : 'Fijar',
       disabled: !canMark,
       hint: markHint,
       onClick: handlers.togglePin,
@@ -140,7 +140,7 @@ export function remoteLaneActions(
       onClick: handlers.copySpend,
     },
     {
-      label: 'Delete',
+      label: 'Eliminar',
       danger: true,
       separatorAbove: true,
       disabled: !controlled || !canWrite || busy,

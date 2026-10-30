@@ -132,7 +132,7 @@ function preflight(hostId: string, lanes: HostLaneView[]): PreflightSummary {
     const pr = pullRequestFor(prs, remotePrKey(hostId, l.repositoryId), l.branch)
     return {
       path: remoteLaneKey(hostId, l.laneId),
-      title: l.title || 'Untitled lane',
+      title: l.title || 'Carril sin título',
       marker: '',
       dirtyCount: 0,
       pr,

@@ -114,13 +114,13 @@ it('uses the local context-menu host and gates controller actions for a viewer',
   host.lanes[0]!.control.controller = null
   render()
   menu()
-  expect(button('Rename').disabled).toBe(true)
-  expect(button('Stop').disabled).toBe(true)
-  expect(button('Delete').disabled).toBe(true)
+  expect(button('Renombrar').disabled).toBe(true)
+  expect(button('Detener').disabled).toBe(true)
+  expect(button('Eliminar').disabled).toBe(true)
   expect(button('Take control').disabled).toBe(false)
   expect(document.body.textContent).not.toContain('Fork')
   // A viewer is told how to get the action, not that it does not exist.
-  for (const action of ['Rename', 'Stop', 'Delete'])
+  for (const action of ['Renombrar', 'Detener', 'Eliminar'])
     expect(button(action).textContent).toContain(TAKE_CONTROL_FIRST)
   expect(document.body.textContent).not.toContain(REMOTE_UNAVAILABLE)
 })
@@ -135,14 +135,14 @@ it('a controller of a stopped lane can delete it, and rename says why it waits',
   host.lanes[0] = { ...host.lanes[0]!, activity: 'stopped' }
   render()
   menu()
-  expect(button('Delete').disabled).toBe(false)
-  expect(button('Rename').disabled).toBe(true)
-  expect(button('Rename').textContent).toContain(ONLY_WHILE_RUNNING)
+  expect(button('Eliminar').disabled).toBe(false)
+  expect(button('Renombrar').disabled).toBe(true)
+  expect(button('Renombrar').textContent).toContain(ONLY_WHILE_RUNNING)
 })
 it('renames inline through the remote session and waits for success', async () => {
   render()
   menu()
-  act(() => button('Rename').click())
+  act(() => button('Renombrar').click())
   const input = document.querySelector<HTMLInputElement>('[aria-label="Lane name"]')!
   const setter = Object.getOwnPropertyDescriptor(HTMLInputElement.prototype, 'value')!.set!
   act(() => {
@@ -161,7 +161,7 @@ it('keeps a failed delete in its confirm and sends explicit resource options', a
   invoke.mockRejectedValue(new Error('private details'))
   render()
   menu()
-  act(() => button('Delete').click())
+  act(() => button('Eliminar').click())
   await act(async () => button('Delete session').click())
   expect(invoke).toHaveBeenCalledWith('hosts:deleteLane', MOCK_HOST_ID, mockRemoteInfo.laneId, {
     removeWorktree: false,
@@ -204,8 +204,8 @@ it('delete requires workspace-write capability even for the current controller',
   }))
   render()
   menu()
-  expect(button('Delete').disabled).toBe(true)
-  expect(button('Delete').textContent).toContain(REMOTE_UNAVAILABLE)
+  expect(button('Eliminar').disabled).toBe(true)
+  expect(button('Eliminar').textContent).toContain(REMOTE_UNAVAILABLE)
 })
 
 it.each([false, true])(
@@ -217,7 +217,7 @@ it.each([false, true])(
     host.lanes[0] = { ...host.lanes[0]!, worktree: true }
     render()
     menu()
-    act(() => button('Delete').click())
+    act(() => button('Eliminar').click())
     const options = [...document.querySelectorAll<HTMLInputElement>('input[type=checkbox]')]
     expect(options.filter((input) => input.checked)).toHaveLength(3)
     await act(async () => button('Delete lane').click())

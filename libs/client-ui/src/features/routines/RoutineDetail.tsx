@@ -101,7 +101,7 @@ export function RoutineDetail(props: RoutineDetailProps): React.JSX.Element {
         : [
             routine.enabled
               ? {
-                  label: 'Pause',
+                  label: 'Pausar',
                   hint: 'no new runs',
                   disabled: busy || routine.machine?.control === false,
                   onClick: props.onPause,
@@ -114,7 +114,7 @@ export function RoutineDetail(props: RoutineDetailProps): React.JSX.Element {
             },
           ]),
       { label: 'Duplicate', separatorAbove: !routine.archived, onClick: props.onDuplicate },
-      { label: 'Export', hint: 'as JSON', onClick: props.onExport },
+      { label: 'Exportar', hint: 'as JSON', onClick: props.onExport },
       ...(routine.archived
         ? []
         : [

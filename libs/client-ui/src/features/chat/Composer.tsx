@@ -415,10 +415,10 @@ export function Composer({
   )
 
   const placeholder = isStreaming
-    ? `Steer with Enter · queue follow-up with ${formatShortcut('alt', 'Enter')} · Esc to stop`
+    ? `Dirige con Enter · encola seguimiento con ${formatShortcut('alt', 'Enter')} · Esc para detener`
     : booting
-      ? 'Starting pi…'
-      : 'Describe a task…'
+      ? 'Iniciando pi…'
+      : 'Describe una tarea…'
 
   return (
     <div className="shrink-0 px-3 pb-4 pt-1 sm:px-5">

@@ -19,14 +19,14 @@ export function AdvancedTab(): React.JSX.Element {
 
   return (
     <div>
-      <SectionTitle>Advanced</SectionTitle>
+      <SectionTitle>Avanzado</SectionTitle>
 
       <Row
-        title="pi health"
+        title="Salud de pi"
         description={
           health
-            ? `${piInstallLocation(health) ?? 'not found'} — minimum supported ${health.minVersion}`
-            : 'checking…'
+            ? `${piInstallLocation(health) ?? 'no encontrado'} — mínimo soportado ${health.minVersion}`
+            : 'comprobando…'
         }
       >
         <span
@@ -41,22 +41,22 @@ export function AdvancedTab(): React.JSX.Element {
 
       <Row
         title="pi settings.json"
-        description="Raw editor for ~/.pi/agent/settings.json. Restart sessions to apply."
+        description="Editor directo de ~/.pi/agent/settings.json. Reinicia las sesiones para aplicar."
       >
-        <Button onClick={() => setEditing('settings')}>Edit…</Button>
+        <Button onClick={() => setEditing('settings')}>Editar…</Button>
       </Row>
       <Row
         title="pi models.json"
-        description="Custom providers and models (local endpoints live here)."
+        description="Proveedores y modelos personalizados (los endpoints locales viven aquí)."
       >
-        <Button onClick={() => setEditing('models')}>Edit…</Button>
+        <Button onClick={() => setEditing('models')}>Editar…</Button>
       </Row>
 
       <MaintenanceSection />
 
       <SectionTitle small>
-        Local pi resources (loose files — packages are in the Extensions tab; skills have their own
-        page: sidebar → Skills)
+        Recursos locales de pi (archivos sueltos — los paquetes están en la pestaña Extensiones; las
+        skills tienen su propia página: barra lateral → Habilidades)
       </SectionTitle>
       <div className="grid grid-cols-3 gap-3">
         {(['extensions', 'prompts', 'themes'] as const).map((kind) => (
@@ -71,14 +71,14 @@ export function AdvancedTab(): React.JSX.Element {
                 </div>
               ))}
               {resources && resources[kind].length === 0 && (
-                <div className="text-text-tertiary text-sm">none</div>
+                <div className="text-text-tertiary text-sm">ninguno</div>
               )}
             </div>
           </div>
         ))}
       </div>
       <p className="text-text-tertiary mt-3 text-sm">
-        auth.json is never read or displayed by Phosphor.
+        Phosphor nunca lee ni muestra auth.json.
       </p>
 
       {editing && (

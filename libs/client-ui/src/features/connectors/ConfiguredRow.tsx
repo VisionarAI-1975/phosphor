@@ -161,7 +161,7 @@ function ConnectorHeader({
           description: 'Separate native pi probe; does not change your lane or call tools',
         }}
       >
-        {check?.checking ? 'Testing…' : check?.error ? 'Retry' : 'Test'}
+        {check?.checking ? 'Testing…' : check?.error ? 'Reintentar' : 'Probar'}
       </Button>
       {usesOAuth(server) &&
         !disabled &&
@@ -171,7 +171,7 @@ function ConnectorHeader({
           failedCheck ||
           flow?.phase === 'failed') && (
           <Button size="sm" onClick={onSignIn}>
-            {state === 'needs-auth' ? 'Sign in' : 'Authorize…'}
+            {state === 'needs-auth' ? 'Iniciar sesión' : 'Authorize…'}
           </Button>
         )}
     </div>

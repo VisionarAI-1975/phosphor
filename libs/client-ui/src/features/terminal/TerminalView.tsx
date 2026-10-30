@@ -266,19 +266,19 @@ export const TerminalView = memo(function TerminalView({
     const mod = clipboardModifiers(hostPlatform())
     showContextMenu(event, [
       {
-        label: 'Copy',
+        label: 'Copiar',
         shortcut: formatShortcut(...mod, 'C'),
         disabled: !term.hasSelection(),
         onClick: () => copySelection(term),
       },
       {
-        label: 'Paste',
+        label: 'Pegar',
         disabled: readOnly,
         shortcut: formatShortcut(...mod, 'V'),
         onClick: () => pasteFromClipboard(term),
       },
       {
-        label: 'Select all',
+        label: 'Seleccionar todo',
         separatorAbove: true,
         onClick: () => {
           term.selectAll()

@@ -594,7 +594,7 @@ export function Sidebar({
             sessionTitle({
               explicitName: liveName ?? meta.name,
               firstUserText: meta.firstUserText,
-            }) ?? 'Untitled session',
+            }) ?? 'Sesión sin título',
           marker: laneMarker(explicit, git?.branch, meta.cwd, markerPrefMode),
           git,
           pr: pullRequestFor(prState, git?.mainRepoPath ?? meta.cwd, git?.branch),
@@ -1500,7 +1500,7 @@ function SessionRow({
     sessionTitle(
       { explicitName: liveName ?? meta.name, firstUserText: meta.firstUserText },
       { elide: false },
-    ) ?? 'Untitled session'
+    ) ?? 'Sesión sin título'
 
   const [renaming, setRenaming] = useState(false)
   const [renameValue, setRenameValue] = useState('')
@@ -1545,7 +1545,7 @@ function SessionRow({
   const menuItems = (): ContextMenuItem[] => {
     const store = useSessionsStore.getState()
     return [
-      { label: 'Open', onClick: open },
+      { label: 'Abrir', onClick: open },
       ...orderActions,
       { label: 'Session tree…', onClick: onOpenTree },
       ...completionActions(workspacePath, meta),
@@ -1554,7 +1554,7 @@ function SessionRow({
         onClick: () => makeRoutine(workspacePath, meta.name ?? '', meta.firstUserText ?? ''),
       },
       {
-        label: isPinned ? 'Unpin' : 'Pin',
+        label: isPinned ? 'Unpin' : 'Fijar',
         onClick: () => store.togglePin(meta.path),
       },
       ...(markerMode === 'off'
@@ -1609,7 +1609,7 @@ function SessionRow({
           ]
         : []),
       {
-        label: 'Delete',
+        label: 'Eliminar',
         hint: bulkDeleteRunning ? 'another delete is running' : 'to trash',
         danger: true,
         separatorAbove: true,
@@ -1938,12 +1938,12 @@ function PendingSessionRow({
   }
   const menuItems = (): ContextMenuItem[] => {
     return [
-      { label: 'Open', onClick: () => void navigateToLane({ sessionId: phosphorId }) },
+      { label: 'Abrir', onClick: () => void navigateToLane({ sessionId: phosphorId }) },
       ...orderActions,
       { label: 'Rename…', onClick: beginRename },
       { label: 'Export HTML…', onClick: () => void exportSessionHtml(phosphorId, title) },
       {
-        label: 'Delete',
+        label: 'Eliminar',
         danger: true,
         separatorAbove: true,
         disabled: deleting,

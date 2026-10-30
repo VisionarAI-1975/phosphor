@@ -54,7 +54,7 @@ it('recovers a failed first read without restoring or resuming, and closes with 
   root = createRoot(container)
   await act(async () => root!.render(<SavedConversationModal />))
   expect(document.querySelector('[role="alert"]')?.textContent).toContain('Temporary read failure')
-  const retry = [...document.querySelectorAll('button')].find((b) => b.textContent === 'Retry')!
+  const retry = [...document.querySelectorAll('button')].find((b) => b.textContent === 'Reintentar')!
   await act(async () => retry.click())
   expect(document.body.textContent).toContain('Saved question')
   expect(document.body.textContent).toContain('Saved answer')

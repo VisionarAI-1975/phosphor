@@ -225,7 +225,7 @@ it('confirms removal before invoking main, and Cancel is inert', async () => {
   expect(confirmation).toContain('return when you add it again')
   expect(confirmation).toContain('phosphor setup')
   expect(invoke).not.toHaveBeenCalledWith('control:removeMachine', MACHINE.id)
-  await click('Cancel')
+  await click('Cancelar')
   expect(document.querySelector('[role=dialog]')).toBeNull()
   await click('Remove machine')
   await act(async () =>

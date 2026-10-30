@@ -7,7 +7,7 @@ export function CopyButton({
   text,
   label,
   size = 'md',
-  title = 'Copy',
+  title = 'Copiar',
   className,
 }: {
   text: string
@@ -47,7 +47,7 @@ export function CopyButton({
       )}
     >
       {copied ? <CheckIcon size={iconSize} /> : <CopyIcon size={iconSize} />}
-      {label && <span>{copied ? 'Copied' : label}</span>}
+      {label && <span>{copied ? 'Copiado' : label}</span>}
     </TooltipButton>
   )
 }

@@ -274,7 +274,7 @@ export function healthSummary(input: {
       const headline = machineHeadline(machine, input.hosts[machine.id], input.now)
       if (headline.tone === 'warn' || headline.tone === 'error') failing.add(machine.id)
       else if (headline.tone === 'off') offline++
-      else if (headline.label === 'Waiting for setup') setup++
+      else if (headline.label === 'Esperando la configuración') setup++
       else if (headline.tone === 'pending') connecting++
     }
   const run = input.run
@@ -285,6 +285,6 @@ export function healthSummary(input: {
   if (issues) return { tone: 'warn', label: issues === 1 ? '1 issue' : `${issues} issues`, issues }
   if (offline) return { tone: 'off', label: `${offline} offline`, issues: 0 }
   if (connecting) return { tone: 'pending', label: 'Connecting…', issues: 0 }
-  if (setup) return { tone: 'pending', label: 'Waiting for setup', issues: 0 }
+  if (setup) return { tone: 'pending', label: 'Esperando la configuración', issues: 0 }
   return { tone: 'ok', label: 'All systems normal', issues: 0 }
 }

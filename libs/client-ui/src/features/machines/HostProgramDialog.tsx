@@ -41,7 +41,7 @@ export function HostProgramDialog({
         <ModalPanel
           width={850}
           title={`${title} on ${hostLabel}`}
-          footer={<Button onClick={onClose}>{ended ? 'Done' : 'Cancel and close'}</Button>}
+          footer={<Button onClick={onClose}>{ended ? 'Listo' : 'Cancel and close'}</Button>}
         >
           <div className="space-y-2 px-5 pt-4 text-base">
             <p>{instructions}</p>

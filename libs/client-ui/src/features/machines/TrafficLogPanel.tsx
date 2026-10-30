@@ -166,7 +166,7 @@ export function TrafficLogPanel({ onClose }: { onClose: () => void }): React.JSX
             Pings
           </Toggle>
           <Button size="xs" onClick={() => setPaused((value) => !value)}>
-            {paused ? 'Resume' : 'Pause'}
+            {paused ? 'Reanudar' : 'Pausar'}
           </Button>
           <Button size="xs" onClick={clear}>
             Clear
@@ -181,7 +181,7 @@ export function TrafficLogPanel({ onClose }: { onClose: () => void }): React.JSX
               })
             }}
           >
-            {copied ? 'Copied' : 'Copy'}
+            {copied ? 'Copiado' : 'Copiar'}
           </Button>
           <PaneIconButton title="Close debug log" onClick={onClose}>
             <CloseIcon size={12} />

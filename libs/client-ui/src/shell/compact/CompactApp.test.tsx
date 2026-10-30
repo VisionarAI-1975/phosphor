@@ -276,7 +276,7 @@ it('executes a real routine Pause action through the compact context-menu host',
   await act(async () => more?.click())
   const pause = [
     ...document.querySelectorAll<HTMLButtonElement>('[data-testid="context-menu"] button'),
-  ].find((button) => button.textContent?.startsWith('Pause'))
+  ].find((button) => button.textContent?.startsWith('Pausar'))
   expect(pause).toBeDefined()
   await act(async () => pause?.click())
   expect(invoke).toHaveBeenCalledWith(

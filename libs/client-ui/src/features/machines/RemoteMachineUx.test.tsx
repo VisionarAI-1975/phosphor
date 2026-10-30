@@ -276,7 +276,7 @@ it('disables Stop until the lane has a first message, with the reason', () => {
   useRemoteLanesStore.setState({ hosts: { [MOCK_HOST_ID]: host } })
   items([])
   act(() => root.render(<RemoteLaneControls sessionId={id} />))
-  const stop = () => button('Stop')
+  const stop = () => button('Detener')
   expect(stop().disabled).toBe(true)
   expect(stop().getAttribute('title') ?? container.innerHTML).toContain(STOP_NEEDS_PROMPT)
   items([{ id: 'u', kind: 'user', text: 'hi' }])

@@ -8,7 +8,7 @@ import { REMOTE_UNAVAILABLE, useRemoteLanesStore } from '@/stores/remoteLanes'
 import { useSessionsStore } from '@/stores/sessions'
 import type { QueueMode, RpcSessionState } from '@shared/rpc'
 
-export const SESSION_OPTIONS = 'Session options'
+export const SESSION_OPTIONS = 'Opciones de sesión'
 
 /**
  * Auto-retry state isn't reported by get_state, so Phosphor tracks the last
@@ -17,8 +17,8 @@ export const SESSION_OPTIONS = 'Session options'
 const autoRetryLocal = new Map<string, boolean>()
 
 const QUEUE_MODE_HINT: Record<QueueMode, string> = {
-  all: 'all at once',
-  'one-at-a-time': 'one at a time',
+  all: 'todos a la vez',
+  'one-at-a-time': 'de uno en uno',
 }
 
 export interface SessionMenuState {
@@ -50,43 +50,43 @@ export function sessionMenuItems({
   const autoRetry = autoRetryLocal.get(sessionId) ?? true
   const steering = meta?.steeringMode ?? 'all'
   const followUp = meta?.followUpMode ?? 'all'
-  const setting = (on: boolean): string => controlHint ?? (on ? 'on' : 'off')
+  const setting = (on: boolean): string => controlHint ?? (on ? 'activado' : 'desactivado')
   const mode = (value: QueueMode): string => controlHint ?? QUEUE_MODE_HINT[value]
   return [
     {
-      label: 'Export HTML…',
+      label: 'Exportar HTML…',
       disabled: remote,
       hint: remote ? REMOTE_UNAVAILABLE : undefined,
       onClick: () => void exportSessionHtml(sessionId, meta?.sessionName ?? 'session'),
     },
     {
-      label: 'Compact now…',
+      label: 'Compactar ahora…',
       disabled: blocked,
       hint: controlHint,
       onClick: () => void compactNow(sessionId),
     },
     {
-      label: 'Auto-compaction',
+      label: 'Auto-compactación',
       separatorAbove: true,
       disabled: blocked,
       hint: setting(autoCompaction),
       onClick: () => void setAutoCompaction(sessionId, !autoCompaction),
     },
     {
-      label: 'Auto-retry',
+      label: 'Auto-reintento',
       disabled: blocked,
       hint: setting(autoRetry),
       onClick: () => void setAutoRetry(sessionId, !autoRetry),
     },
     {
-      label: 'Steering',
+      label: 'Dirección',
       separatorAbove: true,
       disabled: blocked,
       hint: mode(steering),
       onClick: () => void setSteeringMode(sessionId, nextMode(steering)),
     },
     {
-      label: 'Follow-ups',
+      label: 'Seguimientos',
       disabled: blocked,
       hint: mode(followUp),
       onClick: () => void setFollowUpMode(sessionId, nextMode(followUp)),
@@ -134,8 +134,8 @@ async function setFollowUpMode(sessionId: string, mode: QueueMode): Promise<void
 
 async function compactNow(sessionId: string): Promise<void> {
   const instructions = await promptText({
-    title: 'Compact context now',
-    message: 'Optional: custom instructions for the compaction summary (leave blank for default)',
+    title: 'Compactar contexto ahora',
+    message: 'Opcional: instrucciones personalizadas para el resumen de compactación (deja en blanco para usar la predeterminada)',
     allowEmpty: true,
   })
   if (instructions === undefined) return

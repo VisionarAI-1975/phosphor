@@ -50,7 +50,7 @@ async function renderPendingCheck(result?: McpCheckResult) {
 
 it('does not offer OAuth sign-in before authentication status is known', async () => {
   const row = await renderPendingCheck()
-  expect(row.textContent).not.toContain('Sign in')
+  expect(row.textContent).not.toContain('Iniciar sesión')
 })
 
 it('keeps OAuth authorization available when inspection needs a newer pi', async () => {

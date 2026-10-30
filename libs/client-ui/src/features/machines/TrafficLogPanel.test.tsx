@@ -99,7 +99,7 @@ it('pauses polling, says when lines were dropped and clears only the view', asyn
   pages = [{ entries: [entry(9)], last: 9, gap: true }]
   await act(async () => root.render(<TrafficLogPanel onClose={() => {}} />))
   expect(container.textContent).toContain('Older lines were dropped')
-  await act(async () => button('Pause').click())
+  await act(async () => button('Pausar').click())
   const calls = invoke.mock.calls.length
   await tick()
   await tick()
@@ -108,7 +108,7 @@ it('pauses polling, says when lines were dropped and clears only the view', asyn
   await act(async () => button('Clear').click())
   expect(rows()).toHaveLength(0)
   expect(container.textContent).toContain('Waiting for traffic')
-  await act(async () => button('Resume').click())
+  await act(async () => button('Reanudar').click())
   // Resumes from where it stopped, not from the beginning.
   expect(invoke).toHaveBeenLastCalledWith('hosts:traffic', 9)
 })

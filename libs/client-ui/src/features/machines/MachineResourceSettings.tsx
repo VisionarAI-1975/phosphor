@@ -92,7 +92,7 @@ function MachinePackages({
                 )}
               </div>
               <StatusPill tone={pkg.installed ? 'ok' : 'off'}>
-                {pkg.installed ? 'Installed' : 'Not found'}
+                {pkg.installed ? 'Instalado' : 'Not found'}
               </StatusPill>
               <Button
                 size="xs"
@@ -104,7 +104,7 @@ function MachinePackages({
                   })
                 }
               >
-                {pkg.installed ? 'Update' : 'Repair installation'}
+                {pkg.installed ? 'Actualizar' : 'Repair installation'}
               </Button>
               <Button
                 size="xs"

@@ -181,14 +181,14 @@ export function AccountFooter(): React.JSX.Element {
           <TooltipButton
             ref={trigger}
             aria-expanded={open}
-            aria-label={user ? 'Your account' : 'Sign in'}
+            aria-label={user ? 'Your account' : 'Iniciar sesión'}
             onClick={() => setOpen(!open)}
             className="hover:bg-sidebar-hover flex min-w-0 flex-1 items-center gap-2.5 rounded-lg px-1.5 py-2 text-left"
           >
             <AccountAvatar user={user} />
             <span className="min-w-0">
               <span className="block truncate text-lg font-medium">
-                {user ? (user.name ?? `@${user.login ?? 'account'}`) : 'Sign in'}
+                {user ? (user.name ?? `@${user.login ?? 'account'}`) : 'Iniciar sesión'}
               </span>
               {user?.login && (
                 <span className="text-text-secondary block truncate text-sm">@{user.login}</span>

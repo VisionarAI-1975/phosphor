@@ -34,10 +34,10 @@ export interface TextFieldMenuEntry {
 const MAX_SUGGESTIONS = 5
 
 const EDIT_ENTRIES: Array<{ label: string; command: EditCommand; key: string }> = [
-  { label: 'Cut', command: 'cut', key: 'X' },
-  { label: 'Copy', command: 'copy', key: 'C' },
-  { label: 'Paste', command: 'paste', key: 'V' },
-  { label: 'Select all', command: 'selectAll', key: 'A' },
+  { label: 'Cortar', command: 'cut', key: 'X' },
+  { label: 'Copiar', command: 'copy', key: 'C' },
+  { label: 'Pegar', command: 'paste', key: 'V' },
+  { label: 'Seleccionar todo', command: 'selectAll', key: 'A' },
 ]
 
 export function buildTextFieldMenu(

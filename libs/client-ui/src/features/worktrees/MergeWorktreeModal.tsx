@@ -94,7 +94,7 @@ export function MergeWorktreeModal({
         footer={
           <>
             <Button onClick={onClose}>
-              {phase.step === 'merged' || phase.step === 'conflict' ? 'Done' : 'Cancel'}
+              {phase.step === 'merged' || phase.step === 'conflict' ? 'Listo' : 'Cancelar'}
             </Button>
             {phase.step === 'commit' && (
               <Button

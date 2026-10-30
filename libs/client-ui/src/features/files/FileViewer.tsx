@@ -269,10 +269,10 @@ function FileActions({ path, compact = false }: { path: string; compact?: boolea
       {/* Short in the viewer bar, so a narrow pane still shows the size. */}
       <TooltipButton
         className={button}
-        title={compact ? 'Open in default app' : undefined}
+        title={compact ? 'Abrir en la app predeterminada' : undefined}
         onClick={() => void openInDefaultApp(path)}
       >
-        {compact ? 'Open' : 'Open in default app'}
+        {compact ? 'Abrir' : 'Abrir en la app predeterminada'}
       </TooltipButton>
       <TooltipButton
         className={button}

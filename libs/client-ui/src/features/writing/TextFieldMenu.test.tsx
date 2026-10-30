@@ -74,16 +74,16 @@ describe('TextFieldMenu', () => {
       'receive',
       'relieve',
       'Add to dictionary',
-      'Cut',
-      'Copy',
-      'Paste',
-      'Select all',
+      'Cortar',
+      'Copiar',
+      'Pegar',
+      'Seleccionar todo',
     ])
   })
 
   it('opens on a text input too', () => {
     rightClick(mount('<input type="text" value="hello" />'))
-    expect(labels()).toContain('Paste')
+    expect(labels()).toContain('Pegar')
   })
 
   it('stands aside when a component already opened its own menu', () => {
@@ -113,7 +113,7 @@ describe('TextFieldMenu', () => {
     const field = mount<HTMLTextAreaElement>('<textarea spellcheck="false">recieve</textarea>')
     field.setSelectionRange(2, 2)
     rightClick(field)
-    expect(labels()).toEqual(['Cut', 'Copy', 'Paste', 'Select all'])
+    expect(labels()).toEqual(['Cortar', 'Copiar', 'Pegar', 'Seleccionar todo'])
   })
 
   it('offers no suggestions while Check spelling is off', () => {
@@ -121,7 +121,7 @@ describe('TextFieldMenu', () => {
     const field = mount<HTMLTextAreaElement>('<textarea>recieve</textarea>')
     field.setSelectionRange(2, 2)
     rightClick(field)
-    expect(labels()).toEqual(['Cut', 'Copy', 'Paste', 'Select all'])
+    expect(labels()).toEqual(['Cortar', 'Copiar', 'Pegar', 'Seleccionar todo'])
   })
 
   it('adds the word to the dictionary through main', () => {
@@ -138,7 +138,7 @@ describe('TextFieldMenu', () => {
     rightClick(field)
     field.blur()
     field.setSelectionRange(11, 11)
-    shown.items!.find((item) => item.label === 'Paste')!.onClick()
+    shown.items!.find((item) => item.label === 'Pegar')!.onClick()
     expect(document.activeElement).toBe(field)
     expect([field.selectionStart, field.selectionEnd]).toEqual([0, 5])
     expect(invoke).toHaveBeenCalledWith('writing:edit', 'paste')

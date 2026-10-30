@@ -37,7 +37,7 @@ export function RemoteLaneRow({
   const { title, busy } = actions
   const menu = useMenuTriggers(actions.items, { title, disabled: !ready })
   function rename(): void {
-    setDraft(title === 'Untitled lane' ? '' : title)
+    setDraft(title === 'Carril sin título' ? '' : title)
     setRenaming(true)
   }
   async function save(): Promise<void> {

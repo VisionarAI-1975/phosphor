@@ -4,9 +4,9 @@ import { NumberField, Row } from '@/components/form'
 import { useSettingsStore } from '@/stores/settings'
 
 const THEME_OPTIONS = [
-  { value: 'light', label: 'Light' },
-  { value: 'dark', label: 'Dark' },
-  { value: 'system', label: 'System' },
+  { value: 'light', label: 'Claro' },
+  { value: 'dark', label: 'Oscuro' },
+  { value: 'system', label: 'Sistema' },
 ] as const
 
 /** Device-local preferences supported by both the browser bridge and Desktop. */
@@ -16,7 +16,7 @@ export function AppearancePreferences(): React.JSX.Element {
   return (
     <>
       <ThemePreference />
-      <Row title="Chat font size" description="Message text size in the conversation.">
+      <Row title="Tamaño de fuente del chat" description="Tamaño del texto de los mensajes en la conversación.">
         <label>
           <span className="sr-only">Chat font size</span>
           <NumberField
@@ -30,11 +30,11 @@ export function AppearancePreferences(): React.JSX.Element {
         </label>
       </Row>
       <Row
-        title="Mono font"
+        title="Fuente monoespaciada"
         description="JetBrains Mono is bundled. Other choices use installed fonts."
       >
         <select
-          aria-label="Mono font"
+          aria-label="Fuente monoespaciada"
           value={fonts.monoFont}
           onChange={(e) => setFonts({ monoFont: e.target.value })}
           className="border-border bg-surface text-text max-w-full rounded-lg border px-2.5 py-1.5 text-base outline-none"
@@ -55,11 +55,11 @@ export function AppearancePreferences(): React.JSX.Element {
 function ThemePreference(): React.JSX.Element {
   const theme = useSettingsStore((s) => s.theme)
   return (
-    <Row title="Theme" description="Applies live to this app on this device.">
+    <Row title="Tema" description="Se aplica en vivo a esta app en este dispositivo.">
       <div
         className="border-border flex flex-wrap overflow-hidden rounded-lg border"
         role="group"
-        aria-label="Theme"
+        aria-label="Tema"
       >
         {THEME_OPTIONS.map(({ value, label }) => (
           <TooltipButton

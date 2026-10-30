@@ -161,7 +161,7 @@ export function MermaidViewer({
           <CopyButton text={code} label="Copy source" />
           {platform.nativeFiles && (
             <Button size="sm" disabled={saving} onClick={() => void save()}>
-              {saving ? 'Saving…' : 'Save SVG'}
+              {saving ? 'Guardando…' : 'Save SVG'}
             </Button>
           )}
           <Button size="sm" aria-label="Close diagram" onClick={onClose}>

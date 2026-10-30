@@ -98,7 +98,7 @@ it('shows a retryable error instead of an empty list when the provider read fail
   await render()
   expect(container.textContent).toContain("Could not load this machine's providers.")
   fail = false
-  const retry = [...container.querySelectorAll('button')].find((b) => b.textContent === 'Retry')
+  const retry = [...container.querySelectorAll('button')].find((b) => b.textContent === 'Reintentar')
   await act(async () => retry?.click())
   expect(container.textContent).not.toContain('Could not load')
   expect(container.querySelector('[data-provider=openai-codex]')?.textContent).toBe(

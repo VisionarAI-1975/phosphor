@@ -345,10 +345,10 @@ it.each(['success', 'conflict', 'unknown'])(
       if (outcome === 'unknown') {
         expect(container.textContent).toContain('Do not retry an uncertain save')
         const save = [...container.querySelectorAll('button')].find(
-          (b) => b.getAttribute('aria-label') === 'Save',
+          (b) => b.getAttribute('aria-label') === 'Guardar',
         )
         expect(save?.disabled).toBe(true)
-        await click('Save')
+        await click('Guardar')
         await click('Editor save')
         expect(invoke.mock.calls.filter(([channel]) => channel === 'fs:writeFile')).toHaveLength(1)
         expect(container.querySelector('textarea')?.value).toBe('edited')
@@ -481,7 +481,7 @@ it.each([
       expect(container.querySelector('textarea')).toBeNull()
       await click('remote.txt')
       expect(container.querySelector('textarea')?.value).toBe('original')
-      expect(button('Save').disabled).toBe(true)
+      expect(button('Guardar').disabled).toBe(true)
       expect(useRemoteFileDrafts.getState().bySession[b]).toBeUndefined()
       // A dirty lane remains protected from a path-link open while unmounted.
       await expect(openRemoteFile(a, 'other.txt')).rejects.toThrow()
@@ -492,11 +492,11 @@ it.each([
       const reads = invoke.mock.calls.filter(([c]) => c === 'fs:readFile').length
       await render(a)
       expect(container.querySelector('textarea')?.value).toBe('edited')
-      expect(button('Save').disabled).toBe(false)
+      expect(button('Guardar').disabled).toBe(false)
       expect(button('other.txt').disabled).toBe(true)
       expect(invoke.mock.calls.filter(([c]) => c === 'fs:readFile')).toHaveLength(reads)
       if (outcome.startsWith('pending-')) {
-        await click('Save')
+        await click('Guardar')
         await render(b)
         if (outcome === 'pending-success-unmounted') {
           await act(async () => settlePending?.())
@@ -514,13 +514,13 @@ it.each([
         await render(a)
         expect(container.querySelector('textarea')?.value).toBe('edited')
         expect(container.querySelector('textarea')?.readOnly).toBe(true)
-        expect(button('Save').disabled).toBe(true)
+        expect(button('Guardar').disabled).toBe(true)
         await click('Editor save')
         expect(invoke.mock.calls.filter(([c]) => c === 'fs:writeFile')).toHaveLength(1)
         await act(async () => settlePending?.())
         expect(container.querySelector('textarea')?.readOnly).toBe(false)
         expect(container.querySelector('textarea')?.value).toBe('edited')
-        expect(button('Save').disabled).toBe(outcome !== 'pending-conflict')
+        expect(button('Guardar').disabled).toBe(outcome !== 'pending-conflict')
         if (outcome === 'pending-success') {
           expect(useRemoteFileDrafts.getState().bySession[a]).toBeUndefined()
           expect(container.textContent).not.toContain('Discard edits')
@@ -542,7 +542,7 @@ it.each([
       }
       if (outcome === 'discard') await click('Discard edits')
       else {
-        await click('Save')
+        await click('Guardar')
         expect(invoke).toHaveBeenCalledWith(
           'fs:writeFile',
           `${mockRemoteInfo.workspacePath}/remote.txt`,
@@ -558,7 +558,7 @@ it.each([
         await render(b)
         await render(a)
         expect(container.querySelector('textarea')?.value).toBe('edited')
-        expect(button('Save').disabled).toBe(outcome === 'unknown')
+        expect(button('Guardar').disabled).toBe(outcome === 'unknown')
         expect(container.textContent).toContain(
           outcome === 'conflict' ? 'File changed on disk' : 'Do not retry',
         )
@@ -570,7 +570,7 @@ it.each([
       expect(container.querySelector('textarea')).toBeNull()
       await click('remote.txt')
       expect(container.querySelector('textarea')?.value).toBe(hostContent)
-      expect(button('Save').disabled).toBe(true)
+      expect(button('Guardar').disabled).toBe(true)
     } finally {
       act(() => root.unmount())
     }

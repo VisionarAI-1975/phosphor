@@ -107,7 +107,7 @@ it('failed attach discards held output and offers explicit Retry with fresh scro
     reject(new Error('Terminal unavailable.'))
   })
   expect(container.textContent).toContain('Terminal unavailable.')
-  expect(container.textContent).toContain('Retry')
+  expect(container.textContent).toContain('Reintentar')
   await act(async () => output('ignored'.repeat(50000)))
   expect(invoke.mock.calls.filter((c) => c[0] === 'pty:attach')).toHaveLength(1)
   expect(terminal.write).not.toHaveBeenCalled()
@@ -116,10 +116,10 @@ it('failed attach discards held output and offers explicit Retry with fresh scro
   )
   await act(async () =>
     Array.from(container.querySelectorAll('button'))
-      .find((b) => b.textContent === 'Retry')!
+      .find((b) => b.textContent === 'Reintentar')!
       .click(),
   )
-  expect(container.textContent).not.toContain('Retry')
+  expect(container.textContent).not.toContain('Reintentar')
   expect(terminal.reset).toHaveBeenCalledTimes(1)
   expect(terminal.write.mock.calls.map((c) => c[0])).toEqual(['fresh'])
   await act(async () => output('live'))

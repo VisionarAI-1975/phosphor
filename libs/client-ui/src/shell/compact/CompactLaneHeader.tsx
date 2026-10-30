@@ -38,7 +38,7 @@ export function CompactLaneHeader({ location }: { location: LaneLocation }): Rea
   const lane = useRemoteLanesStore((s) =>
     s.hosts[hostId]?.lanes.find((item) => item.laneId === laneId),
   )
-  const title = lane?.title || 'Lane'
+  const title = lane?.title || 'Carril'
   const session = useRemoteLaneSession(hostId, laneId)
   const control = useLaneControl(session?.phosphorId)
   const [open, setOpen] = useState(false)
@@ -58,13 +58,13 @@ export function CompactLaneHeader({ location }: { location: LaneLocation }): Rea
   )
   return (
     <header className="compact-header compact-lane-header">
-      <Button aria-label="Back to lanes" onClick={() => navigate({ to: 'lanes', machine: hostId })}>
+      <Button aria-label="Volver a carriles" onClick={() => navigate({ to: 'lanes', machine: hostId })}>
         <ChevronIcon size={18} strokeWidth={2} className="rotate-180" />
       </Button>
       <TooltipButton
         tooltip={false}
         className="compact-lane-title"
-        aria-label={`Lane menu, ${title}`}
+        aria-label={`Menú de carril, ${title}`}
         aria-describedby={statusId}
         aria-haspopup="dialog"
         aria-expanded={open}
@@ -149,9 +149,9 @@ function HostLaneMenu({
     onRename: () => {
       onClose()
       void promptText({
-        title: 'Rename lane',
-        initialValue: actions.title === 'Untitled lane' ? '' : actions.title,
-        submitLabel: 'Rename',
+        title: 'Renombrar carril',
+        initialValue: actions.title === 'Carril sin título' ? '' : actions.title,
+        submitLabel: 'Renombrar',
       }).then((name) => (name ? actions.saveName(name) : false))
     },
   })
@@ -188,7 +188,7 @@ function LaneSheet({
   const control = useLaneControl(sessionId)
   return (
     <ActionSheet
-      label="Lane menu"
+      label="Menú de carril"
       head={
         <>
           <strong>{title}</strong>
@@ -197,7 +197,7 @@ function LaneSheet({
       }
       onClose={onClose}
     >
-      <nav aria-label="Lane panes" className="action-sheet-group">
+      <nav aria-label="Paneles de carril" className="action-sheet-group">
         <p className="action-sheet-label">View</p>
         {COMPACT_LANE_PANES.map((id) => {
           const Icon = SCREENS[id].icon

@@ -3,7 +3,7 @@ import { PhosphorLoader } from '@/components/PhosphorLoader'
 
 /** App startup only — later session switches keep their local loading states. */
 export function LoadingScreen({
-  message = 'Preparing your workspace…',
+  message = 'Preparando tu espacio de trabajo…',
   error,
   onRetry,
   onContinue,

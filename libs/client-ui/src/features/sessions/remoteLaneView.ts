@@ -9,7 +9,7 @@ export function remoteLaneTitle(
   first?: string,
 ): string {
   return (
-    sessionTitle({ explicitName: name?.trim() || summary, firstUserText: first }) ?? 'Untitled lane'
+    sessionTitle({ explicitName: name?.trim() || summary, firstUserText: first }) ?? 'Carril sin título'
   )
 }
 
