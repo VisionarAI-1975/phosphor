@@ -27,19 +27,19 @@ export function VoiceTab(): React.JSX.Element {
 
   return (
     <div>
-      <SectionTitle>Voice</SectionTitle>
+      <SectionTitle>Voz</SectionTitle>
       <Row
-        title="Voice input"
-        description="Adds a microphone to the composer: click it, talk, click again and the text appears at the caret. Speech is transcribed on this computer, and audio never leaves it. Turning this on downloads the model; turning it off deletes it."
+        title="Entrada de voz"
+        description="Añade un micrófono al composer: haz clic, habla, vuelve a hacer clic y el texto aparece en el cursor. El habla se transcribe en esta computadora y el audio nunca sale de ella. Activarlo descarga el modelo; desactivarlo lo elimina."
       >
         <Toggle on={status.prefs.enabled} onChange={(enabled) => save({ enabled })} />
       </Row>
       <Row
-        title="Model"
-        description="Moonshine, run locally. Both sizes understand English only. Switching downloads the new model and deletes the old one."
+        title="Modelo"
+        description="Moonshine, ejecutado localmente. Ambos tamaños solo entienden inglés. Cambiar descarga el nuevo modelo y elimina el anterior."
       >
         <select
-          aria-label="Model"
+          aria-label="Modelo"
           value={status.prefs.model}
           onChange={(e) => save({ model: e.target.value as VoicePrefs['model'] })}
           className="border-border bg-surface text-text rounded-lg border px-2.5 py-1.5 text-base outline-none"
@@ -70,7 +70,7 @@ function ModelState({
       <div className="mt-3 flex items-center gap-3 text-sm">
         <span className="text-warning min-w-0 flex-1">{status.error}</span>
         <Button size="sm" onClick={onRetry}>
-          Retry
+          Reintentar
         </Button>
       </div>
     )
@@ -80,7 +80,7 @@ function ModelState({
     return (
       <div className="mt-3 text-sm" role="status">
         <div className="text-text-secondary mb-1.5">
-          Downloading {model?.label} · {formatBytes(status.receivedBytes)} of{' '}
+          Descargando {model?.label} · {formatBytes(status.receivedBytes)} de{' '}
           {formatBytes(status.totalBytes)}
         </div>
         <div className="bg-bg-secondary h-1.5 overflow-hidden rounded-full">
@@ -91,7 +91,7 @@ function ModelState({
   }
   return (
     <div className="text-text-secondary mt-3 text-sm" role="status">
-      {model?.label} is ready. {model?.detail}
+      {model?.label} está listo. {model?.detail}
     </div>
   )
 }

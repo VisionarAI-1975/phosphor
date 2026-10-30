@@ -20,10 +20,10 @@ export function AccountTab(): React.JSX.Element {
   }
   return (
     <div>
-      <SectionTitle>Phosphor account</SectionTitle>
+      <SectionTitle>Cuenta de Phosphor</SectionTitle>
       {user ? (
         <Row
-          title="Signed in"
+          title="Sesión iniciada"
           description={[user.name, user.login && `@${user.login}`, user.email]
             .filter(Boolean)
             .join(' · ')}
@@ -32,22 +32,22 @@ export function AccountTab(): React.JSX.Element {
             <AccountAvatar user={user} />
             <Button
               disabled={busy}
-              onClick={() => run('account:signOut', 'Could not sign out. Try again.')}
+              onClick={() => run('account:signOut', 'No se pudo cerrar la sesión. Inténtalo de nuevo.')}
             >
-              {busy ? 'Signing out…' : 'Sign out'}
+              {busy ? 'Cerrando sesión…' : 'Cerrar sesión'}
             </Button>
           </div>
         </Row>
       ) : (
         <Row
-          title="Not signed in"
-          description="Sign in with GitHub to reach the Hosts in your account."
+          title="Sesión no iniciada"
+          description="Inicia sesión con GitHub para acceder a los Hosts de tu cuenta."
         >
           <Button
             disabled={busy || account.status === 'signing-in'}
-            onClick={() => run('account:signIn', 'Could not start sign-in. Try again.')}
+            onClick={() => run('account:signIn', 'No se pudo iniciar el inicio de sesión. Inténtalo de nuevo.')}
           >
-            {account.status === 'signing-in' ? 'Finish in your browser…' : 'Sign in with GitHub'}
+            {account.status === 'signing-in' ? 'Termina en tu navegador…' : 'Iniciar sesión con GitHub'}
           </Button>
         </Row>
       )}

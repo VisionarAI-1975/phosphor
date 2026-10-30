@@ -80,18 +80,18 @@ export function AccountsTab(): React.JSX.Element {
 
   return (
     <div className="max-w-2xl">
-      <h2 className="text-xl font-semibold">Accounts</h2>
+      <h2 className="text-xl font-semibold">Cuentas</h2>
       <p className="text-text-secondary mt-1 text-base">
-        Sign pi into a provider instead of pasting an API key. Signed-in providers put their models
-        in the picker for every session.
+        Inicia sesión en pi con un proveedor en lugar de pegar una API key. Los proveedores con
+        sesión iniciada ponen sus modelos en el selector de cada sesión.
       </p>
 
       {providers === null ? (
-        <div className="text-text-secondary mt-4 text-base">Checking…</div>
+        <div className="text-text-secondary mt-4 text-base">Comprobando…</div>
       ) : (
         <>
           <ProviderGroup
-            title="Use a plan you already pay for"
+            title="Usa un plan que ya pagas"
             providers={subscriptions}
             flow={flow}
             onSignIn={signIn}
@@ -99,8 +99,8 @@ export function AccountsTab(): React.JSX.Element {
           />
           {balances.length > 0 && (
             <ProviderGroup
-              title="Billed per token"
-              caption="These sign in the same way, but usage is charged against a credit balance."
+              title="Facturación por token"
+              caption="Estos inician sesión igual, pero el uso se cobra contra un saldo de crédito."
               providers={balances}
               flow={flow}
               onSignIn={signIn}
@@ -117,14 +117,14 @@ export function AccountsTab(): React.JSX.Element {
           onClick={() => void refresh()}
           className="text-text-secondary hover:text-text text-base"
         >
-          Refresh
+          Actualizar
         </TooltipButton>
         {ptyId === null && (
           <TooltipButton
             onClick={() => void openTerminal()}
             className="text-text-tertiary hover:text-text text-base"
           >
-            Open pi’s login terminal
+            Abrir la terminal de login de pi
           </TooltipButton>
         )}
       </div>
@@ -133,13 +133,13 @@ export function AccountsTab(): React.JSX.Element {
         <div className="mt-4">
           <div className="mb-2 flex items-center justify-between">
             <p className="text-text-secondary text-base">
-              pi’s own <span className="font-mono">/login</span>. Type it and press Enter.
+              El <span className="font-mono">/login</span> propio de pi. Escríbelo y pulsa Enter.
             </p>
             <TooltipButton
               onClick={closeTerminal}
               className="text-text-secondary hover:text-text text-base"
             >
-              Done
+              Listo
             </TooltipButton>
           </div>
           <div className="border-border h-64 overflow-hidden rounded-lg border p-2">
@@ -218,7 +218,7 @@ function ProviderRow({
             {ready && (
               <span className="bg-success/15 text-success inline-flex items-center gap-1 rounded-full px-2 py-0.5 text-sm">
                 <CheckIcon size={11} />
-                Signed in
+                Sesión iniciada
               </span>
             )}
             {provider.status === 'unknown' && (
@@ -226,7 +226,7 @@ function ProviderRow({
                 className="bg-warning/15 text-warning rounded-full px-2 py-0.5 text-sm"
                 data-tooltip={provider.reason ?? provider.error}
               >
-                Unknown
+                Desconocido
               </span>
             )}
           </div>
@@ -240,7 +240,7 @@ function ProviderRow({
               {provider.account}
             </p>
           )}
-          <p className="text-text-secondary mt-0.5 text-sm">Requires {provider.requires}.</p>
+          <p className="text-text-secondary mt-0.5 text-sm">Requiere {provider.requires}.</p>
           {provider.caveat && <p className="text-text-tertiary mt-1 text-sm">{provider.caveat}</p>}
           {provider.error && <p className="text-danger mt-1 text-sm">{provider.error}</p>}
         </div>
@@ -251,7 +251,7 @@ function ProviderRow({
               onClick={() => onCancel(provider.id)}
               className="text-text-secondary hover:text-text text-base"
             >
-              Cancel
+              Cancelar
             </TooltipButton>
           ) : (
             <Button
@@ -259,7 +259,7 @@ function ProviderRow({
               disabled={disabled}
               onClick={() => void onSignIn(provider.id)}
             >
-              {ready ? 'Sign in again' : 'Iniciar sesión'}
+              {ready ? 'Iniciar sesión de nuevo' : 'Iniciar sesión'}
             </Button>
           )}
         </div>
@@ -276,7 +276,7 @@ function LoginProgress({ flow }: { flow: LoginFlowState }): React.JSX.Element | 
     return (
       <div className="text-text-secondary mt-3 flex items-center gap-2 text-sm">
         <Spinner />
-        Starting pi’s sign-in…
+        Iniciando el inicio de sesión de pi…
       </div>
     )
   }
@@ -287,14 +287,14 @@ function LoginProgress({ flow }: { flow: LoginFlowState }): React.JSX.Element | 
     <div className="border-border bg-surface-raised mt-3 rounded-md border p-3">
       <div className="text-text-secondary flex items-center gap-2 text-sm">
         <Spinner />
-        Waiting for you to finish in your browser.
+        Esperando a que termines en tu navegador.
       </div>
 
       {flow.userCode && (
         <div className="mt-2.5">
           {/* The device code is the step people miss: the browser page asks for
               it, and it is nowhere else on screen. */}
-          <p className="text-text-tertiary text-sm">Enter this code on the page:</p>
+          <p className="text-text-tertiary text-sm">Introduce este código en la página:</p>
           <div className="mt-1 flex items-center gap-2">
             <code className="border-border bg-surface rounded border px-2 py-1 font-mono text-base tracking-widest">
               {flow.userCode}
@@ -303,7 +303,7 @@ function LoginProgress({ flow }: { flow: LoginFlowState }): React.JSX.Element | 
               onClick={() => void navigator.clipboard.writeText(flow.userCode ?? '')}
               className="text-text-secondary hover:text-text text-sm"
             >
-              Copy
+              Copiar
             </TooltipButton>
           </div>
         </div>
@@ -313,7 +313,7 @@ function LoginProgress({ flow }: { flow: LoginFlowState }): React.JSX.Element | 
         onClick={() => void window.phosphor.invoke('app:openExternal', flow.url)}
         className="text-accent mt-2.5 block text-sm hover:underline"
       >
-        Browser didn’t open? Open the sign-in page again
+        ¿No se abrió el navegador? Abre la página de inicio de sesión de nuevo
       </TooltipButton>
     </div>
   )

@@ -17,28 +17,28 @@ export function WritingTab(): React.JSX.Element {
 
   return (
     <div>
-      <SectionTitle>Writing</SectionTitle>
+      <SectionTitle>Escritura</SectionTitle>
 
       <Row
-        title="Check spelling"
-        description="Underlines misspelled words in text fields. Right-click one for suggestions or to add it to your dictionary."
+        title="Revisar ortografía"
+        description="Subraya las palabras mal escritas en los campos de texto. Haz clic derecho en una para ver sugerencias o añadirla a tu diccionario."
       >
         <Toggle on={prefs.spellcheck} onChange={(on) => void setPrefs({ spellcheck: on })} />
       </Row>
 
       <Row
-        title="Autocomplete"
-        description={`Suggests the rest of a word or phrase as you type in a composer, learned from the prompts you send from now on. Tab or → accepts it, ${wordKey} takes one word, Esc hides it. Runs on this computer; nothing is sent anywhere.`}
+        title="Autocompletado"
+        description={`Sugiere el resto de una palabra o frase mientras escribes en el composer, aprendiendo de los prompts que envíes de ahora en adelante. Tab o → la acepta, ${wordKey} toma una palabra, Esc la oculta. Se ejecuta en esta computadora; no se envía nada a ningún lado.`}
       >
         <Toggle on={prefs.autocomplete} onChange={(on) => void setPrefs({ autocomplete: on })} />
       </Row>
 
       <Row
-        title="Learned prompts"
+        title="Prompts aprendidos"
         description={
           learned === null
-            ? 'Prompts autocomplete has kept on this computer.'
-            : `${learned} ${learned === 1 ? 'prompt' : 'prompts'} kept on this computer, up to the last 2,000. Only kept while autocomplete is on.`
+            ? 'Prompts que el autocompletado guardó en esta computadora.'
+            : `${learned} ${learned === 1 ? 'prompt' : 'prompts'} guardados en esta computadora, hasta los últimos 2.000. Solo se guardan mientras el autocompletado está activo.`
         }
       >
         <Button
@@ -46,7 +46,7 @@ export function WritingTab(): React.JSX.Element {
           disabled={!learned}
           onClick={() => void useWritingStore.getState().clearPrompts()}
         >
-          Clear
+          Borrar
         </Button>
       </Row>
     </div>
