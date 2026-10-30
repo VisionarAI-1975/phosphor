@@ -23,11 +23,11 @@ import { useFeedbackStore } from './feedbackStore'
  */
 
 const RATING_LABELS: Record<FeedbackRating, string> = {
-  1: 'Frustrating',
-  2: 'Rough',
-  3: 'Fine',
-  4: 'Good',
-  5: 'Love it',
+  1: 'Frustrante',
+  2: 'Mejorable',
+  3: 'Aceptable',
+  4: 'Bien',
+  5: 'Me encanta',
 }
 
 const EMPTY: FeedbackDraft = {
@@ -55,7 +55,7 @@ function StarPicker({
           <TooltipButton
             key={value}
             type="button"
-            aria-label={`${value} of 5`}
+            aria-label={`${value} de 5`}
             aria-pressed={rating === value}
             onMouseEnter={() => setHover(value)}
             onClick={() => onChange(value)}
@@ -133,20 +133,20 @@ export function FeedbackModal(): React.JSX.Element | null {
       <div
         role="dialog"
         aria-modal="true"
-        aria-label="Send feedback"
+        aria-label="Enviar comentarios"
         className="border-border bg-bg flex max-h-[86vh] w-[560px] max-w-[94vw] flex-col overflow-hidden rounded-2xl border shadow-2xl"
       >
         <header className="border-border flex items-start justify-between gap-4 border-b px-5 py-4">
           <div>
-            <h2 className="text-xl font-semibold">How is Phosphor going?</h2>
+            <h2 className="text-xl font-semibold">¿Qué tal va Phosphor?</h2>
             <p className="text-text-tertiary mt-0.5 text-sm">
-              Honest answers are the useful ones. This goes to a public issue in{' '}
-              {state?.repo ?? 'the Phosphor repo'}.
+              Las respuestas honestas son las útiles. Esto se convierte en un issue público en{' '}
+              {state?.repo ?? 'el repo de Phosphor'}.
             </p>
           </div>
           <TooltipButton
             onClick={close}
-            aria-label="Close"
+            aria-label="Cerrar"
             className="text-text-tertiary hover:text-text -mr-1 rounded p-1"
           >
             <CloseIcon />
@@ -155,41 +155,41 @@ export function FeedbackModal(): React.JSX.Element | null {
 
         {sent?.ok ? (
           <div className="flex flex-col gap-3 px-5 py-8 text-center">
-            <div className="text-lg font-medium">Thank you.</div>
+            <div className="text-lg font-medium">Gracias.</div>
             <p className="text-text-secondary text-base">
               {sent.mode === 'github'
-                ? 'GitHub is open in your browser with the issue filled in — press Submit there to post it.'
-                : 'Your feedback has been filed.'}
+                ? 'GitHub está abierto en tu navegador con el issue rellenado: pulsa Submit allí para publicarlo.'
+                : 'Tus comentarios han sido registrados.'}
             </p>
             <div className="mt-2 flex justify-center gap-2">
               {sent.url && (
                 <Button onClick={() => void window.phosphor.invoke('app:openExternal', sent.url!)}>
-                  Open the issue
+                  Abrir el issue
                 </Button>
               )}
               <Button variant="primary" onClick={close}>
-                Done
+                Listo
               </Button>
             </div>
           </div>
         ) : (
           <div className="flex min-h-0 flex-col gap-4 overflow-y-auto px-5 py-4">
             <div>
-              <div className="mb-2 text-base font-medium">Your rating</div>
+              <div className="mb-2 text-base font-medium">Tu valoración</div>
               <StarPicker rating={draft.rating} onChange={(rating) => patch({ rating })} />
             </div>
 
             <Field
-              label="What's working, what isn't"
+              label="Qué funciona y qué no"
               value={draft.comment}
               onChange={(comment) => patch({ comment })}
-              placeholder="The good and the bad. Specifics help more than politeness."
+              placeholder="Lo bueno y lo malo. Los detalles concretos ayudan más que la cortesía."
             />
             <Field
-              label="Features you'd like to see"
+              label="Funciones que te gustaría ver"
               value={draft.wishlist}
               onChange={(wishlist) => patch({ wishlist })}
-              placeholder="What would make Phosphor better for you?"
+              placeholder="¿Qué haría que Phosphor fuera mejor para ti?"
             />
 
             <div className="border-border flex flex-col gap-2 border-t pt-3">
@@ -202,11 +202,11 @@ export function FeedbackModal(): React.JSX.Element | null {
                   onChange={(e) => patch({ anonymous: e.target.checked })}
                 />
                 <span className={clsx(!canBeAnonymous && 'text-text-tertiary')}>
-                  Send anonymously
+                  Enviar de forma anónima
                   <span className="text-text-tertiary ml-2 text-sm">
                     {canBeAnonymous
-                      ? 'No name, no contact details.'
-                      : 'Unavailable: the issue is opened in your browser, under your own GitHub account.'}
+                      ? 'Sin nombre ni datos de contacto.'
+                      : 'No disponible: el issue se abre en tu navegador, con tu propia cuenta de GitHub.'}
                   </span>
                 </span>
               </TooltipLabel>
@@ -215,7 +215,7 @@ export function FeedbackModal(): React.JSX.Element | null {
                 <TextInput
                   value={draft.contact ?? ''}
                   maxLength={FEEDBACK_CONTACT_MAX}
-                  placeholder="Optional: how to reach you for follow-up"
+                  placeholder="Opcional: cómo contactarte para hacer seguimiento"
                   onChange={(e) => patch({ contact: e.target.value })}
                   className="w-full"
                 />
@@ -229,9 +229,9 @@ export function FeedbackModal(): React.JSX.Element | null {
                   onChange={(e) => patch({ includeEnvironment: e.target.checked })}
                 />
                 <span>
-                  Include app version and platform
+                  Incluir versión de la app y plataforma
                   <span className="text-text-tertiary ml-2 text-sm">
-                    Nothing else about your machine, your code or your sessions is ever attached.
+                    Nada más de tu máquina, tu código o tus sesiones se adjunta nunca.
                   </span>
                 </span>
               </TooltipLabel>
@@ -245,13 +245,13 @@ export function FeedbackModal(): React.JSX.Element | null {
               {sent && !sent.ok ? sent.error : ''}
             </span>
             <div className="flex shrink-0 gap-2">
-              <Button onClick={close}>Cancel</Button>
+              <Button onClick={close}>Cancelar</Button>
               <Button
                 variant="primary"
                 disabled={submitting || !isFeedbackSubmittable(draft)}
                 onClick={() => void useFeedbackStore.getState().submit({ ...draft, anonymous })}
               >
-                {submitting ? 'Sending…' : state?.mode === 'relay' ? 'Send' : 'Open on GitHub'}
+                {submitting ? 'Enviando…' : state?.mode === 'relay' ? 'Enviar' : 'Abrir en GitHub'}
               </Button>
             </div>
           </footer>

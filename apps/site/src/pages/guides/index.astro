@@ -3,128 +3,128 @@ import Guide from '../../layouts/Guide.astro'
 import Command from '../../components/Command.astro'
 import { doc, download, guides, piDoc, repo } from '../../lib/content'
 const sections: [string, string][] = [
-  ['install', '1. Install'],
-  ['sign-in', '2. Sign in'],
-  ['first-task', '3. Run a first task'],
-  ['extend', '4. Go further'],
-  ['trust', 'Permissions and data'],
-  ['help', 'Troubleshooting'],
+  ['install', '1. Instalación'],
+  ['sign-in', '2. Iniciar sesión'],
+  ['first-task', '3. Ejecutar una primera tarea'],
+  ['extend', '4. Ir más lejos'],
+  ['trust', 'Permisos y datos'],
+  ['help', 'Solución de problemas'],
 ]
 ---
 
 <Guide
-  title="Install and start"
-  description="From a fresh install to your first task. Start with one provider and add extensions and services later."
+  title="Instalación y primeros pasos"
+  description="Desde una instalación limpia hasta tu primera tarea. Comienza con un proveedor y añade extensiones y servicios después."
   sections={sections}
 >
   <section id="install">
-    <h2>1. Install pi and Phosphor</h2>
+    <h2>1. Instalar pi y Phosphor</h2>
     <p>
-      You need Node.js 22.19 or newer and a provider account or API key. Install pi in a terminal:
+      Necesitas Node.js 22.19 o más reciente y una cuenta de proveedor o clave de API. Instala pi en una terminal:
     </p>
-    <Command cmd="npm install -g @earendil-works/pi-coding-agent" label="Install pi" />
+    <Command cmd="npm install -g @earendil-works/pi-coding-agent" label="Instalar pi" />
     <p>
-      <a href={download.latest} rel="nofollow">Download Phosphor from the latest release</a>. On macOS, open
-      the DMG and drag Phosphor to Applications. On Linux, use the AppImage or the .deb. On Windows,
-      run the x64 .exe installer.
+      <a href={download.latest} rel="nofollow">Descarga Phosphor desde la última versión</a>. En macOS, abre
+      el DMG y arrastra Phosphor a Aplicaciones. En Linux, usa el AppImage o el .deb. En Windows,
+      ejecuta el instalador .exe x64.
     </p>
-    <p>Or, on macOS or Linux:</p>
+    <p>O bien, en macOS o Linux:</p>
     <Command
       cmd={download.install}
-      label="Install Phosphor on macOS or Linux"
+      label="Instalar Phosphor en macOS o Linux"
     />
     <p>
-      The script checks release checksums. It’s still a script piped into your shell, so <a
-        href={`${repo}/blob/main/tools/scripts/install.sh`}>read it first</a
-      >. Windows builds aren’t signed, so SmartScreen may warn you. Once you’ve confirmed the
-      download came from this repo, choose More info → Run anyway.
+      El script comprueba los checksums de las versiones. Aun así, es un script que se canaliza a tu shell, así que <a
+        href={`${repo}/blob/main/tools/scripts/install.sh`}>léelo primero</a
+      >. Las compilaciones de Windows no están firmadas, por lo que SmartScreen puede avisarte. Una vez que confirmes que
+      la descarga proviene de este repositorio, elige Más información → Ejecutar de todas formas.
     </p>
     <p>
-      <strong>Check:</strong> launch Phosphor. If the setup screen says pi is missing, make sure <code
+      <strong>Verificación:</strong> inicia Phosphor. Si la pantalla de configuración indica que falta pi, asegúrate de que <code
         >pi --version</code
-      > works and that its directory is on the PATH desktop apps see. Restart Phosphor after changing
-      PATH.
+      > funciona y de que su directorio está en el PATH que ven las aplicaciones de escritorio. Reinicia Phosphor después de cambiar
+      el PATH.
     </p>
   </section>
   <section id="sign-in">
-    <h2>2. Sign in to a provider</h2>
+    <h2>2. Iniciar sesión en un proveedor</h2>
     <ul>
       <li>
-        <strong>ChatGPT Plus/Pro:</strong> Settings → Accounts → sign in to the ChatGPT/Codex provider.
-        This uses pi’s built-in OAuth. You don’t need the Codex CLI.
+        <strong>ChatGPT Plus/Pro:</strong> Ajustes → Cuentas → inicia sesión en el proveedor de ChatGPT/Codex.
+        Esto usa el OAuth integrado de pi. No necesitas la CLI de Codex.
       </li>
       <li>
-        <strong>Claude Pro/Max:</strong> install the official Claude Code CLI and the <code
+        <strong>Claude Pro/Max:</strong> instala la CLI oficial de Claude Code y el proveedor <code
           >@saccolabs/pi-claude-cli</code
-        > provider, then add one or more logins under Settings → Extensions → Claude Code. <a
-          href="/guides/accounts/">Step-by-step guide</a
+        >, luego añade una o más sesiones en Ajustes → Extensiones → Claude Code. <a
+          href="/guides/accounts/">Guía paso a paso</a
         >.
       </li>
       <li>
-        <strong>GitHub Copilot or Kimi For Coding:</strong> use the corresponding sign-in in Settings
-        → Accounts. Copilot Enterprise Server uses pi’s terminal login.
+        <strong>GitHub Copilot o Kimi For Coding:</strong> usa el inicio de sesión correspondiente en Ajustes
+        → Cuentas. Copilot Enterprise Server usa el inicio de sesión por terminal de pi.
       </li>
       <li>
-        <strong>API keys or custom endpoints:</strong> set them up in pi. See pi’s docs on <a
-          href={piDoc('providers')}>provider auth</a
-        > and <a href={piDoc('models')}>custom models</a>.
+        <strong>Claves de API o endpoints personalizados:</strong> configúralos en pi. Consulta la documentación de pi sobre <a
+          href={piDoc('providers')}>autenticación de proveedores</a
+        > y <a href={piDoc('models')}>modelos personalizados</a>.
       </li>
     </ul>
     <p>
-      If sign-in from Settings doesn’t finish, run <code>pi</code> in a terminal and use <code
+      Si el inicio de sesión desde Ajustes no termina, ejecuta <code>pi</code> en una terminal y usa <code
         >/login</code
-      >. Claude Code logins are separate from pi’s provider credentials. Phosphor doesn’t come with
-      any model usage. Your provider’s billing and plan limits apply.
+      >. Las sesiones de Claude Code son independientes de las credenciales del proveedor de pi. Phosphor no incluye
+      ningún uso de modelos. Se aplican los límites de facturación y del plan de tu proveedor.
     </p>
     <p>
-      Signing in to more than one plan pays off: when one runs out, a lane can move to another and
-      keep going. <a href="/guides/accounts/#recommended">The setup we recommend</a>.
+      Iniciar sesión en más de un plan compensa: cuando uno se agota, un carril puede moverse a otro y
+      seguir adelante. <a href="/guides/accounts/#recommended">La configuración que recomendamos</a>.
     </p>
   </section>
   <section id="first-task">
-    <h2>3. Run a first task</h2>
+    <h2>3. Ejecutar una primera tarea</h2>
     <ol>
-      <li>Open a repo you trust. A throwaway project is a good place to start.</li>
+      <li>Abre un repositorio en el que confíes. Un proyecto desechable es un buen lugar para empezar.</li>
       <li>
-        Pick a model in the composer. To use your Claude subscription, pick a model under <code
+        Elige un modelo en el compositor. Para usar tu suscripción de Claude, elige un modelo bajo <code
           >pi-claude-cli</code
-        >, not one of the API-billed Anthropic entries.
+        >, no una de las entradas de Anthropic facturadas por API.
       </li>
       <li>
-        Leave the new worktree option on to get a separate checkout, or turn it off to work in the
-        main checkout. Git features need a Git repo.
+        Deja activada la opción de nuevo worktree para obtener un checkout separado, o desactívala para trabajar en el
+        checkout principal. Las funciones de Git necesitan un repositorio Git.
       </li>
       <li>
-        Ask for something small you can check, like: “Add a test for an empty input in this parser.
-        Run the relevant tests and show me the diff.”
+        Pide algo pequeño que puedas verificar, como: "Añade una prueba para una entrada vacía en este parser.
+        Ejecuta las pruebas relevantes y muéstrame el diff."
       </li>
       <li>
-        Expand the tool calls to see the commands and their output. Open Changes to review each
-        file. Don’t take “done” at face value: check that the tests actually ran and passed.
+        Expande las llamadas a herramientas para ver los comandos y su salida. Abre Cambios para revisar cada
+        archivo. No des por hecho que "está terminado": verifica que las pruebas realmente se ejecutaron y pasaron.
       </li>
       <li>
-        Want a write-up you can keep? Ask for it as an artifact and it opens as a versioned doc next
-        to the chat. Use Files or Terminal to look at or run things yourself.
+        ¿Quieres un informe que puedas conservar? Pídelo como un artifact y se abrirá como un documento versionado junto
+        al chat. Usa Archivos o Terminal para ver o ejecutar cosas por ti mismo.
       </li>
     </ol>
     <p>
-      <strong>Check:</strong> you know which branch the session is on, you’ve read the diff, and you’ve
-      seen the test output. For a second task, start a new lane with its own worktree. Don’t point two
-      sessions at the same checkout. <a href="/guides/daily-work/">Daily work</a> covers what comes next:
-      reviewing, merging, and running several lanes.
+      <strong>Verificación:</strong> sabes en qué rama está la sesión, has leído el diff y has
+      visto la salida de las pruebas. Para una segunda tarea, inicia un nuevo carril con su propio worktree. No apuntes dos
+      sesiones al mismo checkout. <a href="/guides/daily-work/">Trabajo diario</a> cubre lo que viene después:
+      revisar, fusionar y ejecutar varios carriles.
     </p>
     <p>
-      <a href={doc('worktrees.md')}>Worktree safeguards</a> · <a href={doc('chat.md')}
-        >Chat and composer reference</a
-      > · <a href={doc('routines.md')}>Schedule recurring work with routines</a>
+      <a href={doc('worktrees.md')}>Protecciones de worktree</a> · <a href={doc('chat.md')}
+        >Referencia de chat y compositor</a
+      > · <a href={doc('routines.md')}>Programa trabajo recurrente con rutinas</a>
     </p>
   </section>
   <section id="extend">
-    <h2>4. Go further</h2>
+    <h2>4. Ir más lejos</h2>
     <p>
-      Once coding works, add what you need. MCP services connect through pi itself; pi packages add
-      web search, subagents, and computer use. Install only what you’ll use, then start a new
-      session.
+      Cuando la codificación funcione, añade lo que necesites. Los servicios MCP se conectan a través de pi mismo; los paquetes de pi añaden
+      búsqueda web, subagentes y uso de la computadora. Instala solo lo que vayas a usar y luego inicia una nueva
+      sesión.
     </p>
     <div class="guide-grid">
       {
@@ -138,48 +138,48 @@ const sections: [string, string][] = [
     </div>
   </section>
   <section id="trust">
-    <h2>Permissions and data</h2>
+    <h2>Permisos y datos</h2>
     <p>
-      Phosphor runs on your machine, but unless you use a local model, the model doesn’t. Your
-      provider receives every prompt and tool result sent to it. Connected services have their own
-      permissions and data policies.
+      Phosphor se ejecuta en tu máquina, pero a menos que uses un modelo local, el modelo no lo hace. Tu
+      proveedor recibe cada prompt y cada resultado de herramienta que se le envía. Los servicios conectados tienen sus propias
+      políticas de permisos y datos.
     </p>
     <p>
-      <strong>Tools run with full permissions by default.</strong> There are no approval prompts unless
-      you install a permission gate, and no sandbox around the agent. A worktree separates Git checkouts;
-      it doesn’t limit file or network access. Packages run code inside pi’s process. Read a package’s
-      source before installing it, and only connect services you’re comfortable handing to the agent.
+      <strong>Las herramientas se ejecutan con todos los permisos por defecto.</strong> No hay avisos de aprobación a menos que
+      instales una compuerta de permisos, y no hay un sandbox alrededor del agente. Un worktree separa los checkouts de Git;
+      no limita el acceso a archivos ni a la red. Los paquetes ejecutan código dentro del proceso de pi. Lee el código fuente de un paquete
+      antes de instalarlo, y solo conecta servicios que te sientas cómodo entregando al agente.
     </p>
     <p>
-      HTML artifacts the model writes are isolated from the app and have no network access. That
-      protects you from the page, not from the agent’s tools. <a href={doc('extensions.md')}
-        >How extensions and artifacts work</a
+      Los artifacts HTML que escribe el modelo están aislados de la aplicación y no tienen acceso a la red. Eso
+      te protege de la página, no de las herramientas del agente. <a href={doc('extensions.md')}
+        >Cómo funcionan las extensiones y los artifacts</a
       >.
     </p>
   </section>
   <section id="help">
-    <h2>If setup stalls</h2>
+    <h2>Si la configuración se detiene</h2>
     <ul>
       <li>
-        <strong>pi missing:</strong> check the PATH desktop apps see, not just your terminal’s.
+        <strong>Falta pi:</strong> revisa el PATH que ven las aplicaciones de escritorio, no solo el de tu terminal.
       </li><li>
-        <strong>No models:</strong> check that you’re signed in, and start a new session after changing
-        provider config.
+        <strong>No hay modelos:</strong> revisa que hayas iniciado sesión, y comienza una nueva sesión después de cambiar
+        la configuración del proveedor.
       </li><li>
-        <strong>Claude is unavailable:</strong> use the <a href="/guides/accounts/#troubleshooting"
-          >Claude troubleshooting checklist</a
+        <strong>Claude no está disponible:</strong> usa la <a href="/guides/accounts/#troubleshooting"
+          >lista de verificación para problemas con Claude</a
         >.
       </li><li>
-        <strong>Connector won’t authenticate:</strong> check its scopes and run <a
-          href="/guides/connectors/#verify">Check again in MCP Connectors</a
+        <strong>El conector no se autentica:</strong> revisa sus scopes y ejecuta <a
+          href="/guides/connectors/#verify">Comprobar de nuevo en Conectores MCP</a
         >.
       </li>
     </ul>
     <p>
-      <a href={doc('updates.md')}>How updates work for each install type</a> · <a
-        href={`${repo}/issues`}>Report a problem</a
-      >. Include versions and the error. Strip tokens, account IDs, private paths, and anything
-      sensitive from logs and screenshots first.
+      <a href={doc('updates.md')}>Cómo funcionan las actualizaciones para cada tipo de instalación</a> · <a
+        href={`${repo}/issues`}>Reportar un problema</a
+      >. Incluye las versiones y el error. Elimina primero los tokens, los IDs de cuenta, las rutas privadas y cualquier
+      información sensible de los registros y capturas de pantalla.
     </p>
   </section>
 </Guide>

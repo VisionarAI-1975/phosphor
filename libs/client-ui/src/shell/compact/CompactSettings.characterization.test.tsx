@@ -79,7 +79,7 @@ const heading = (name: string): Element | undefined =>
 
 it('shows the browser Settings page with the shared theme rows first', async () => {
   await renderPage()
-  expect(heading('Settings')).toBeDefined()
+  expect(heading('Ajustes')).toBeDefined()
   expect(container.querySelector('[role="group"][aria-label="Theme"]')).not.toBeNull()
   expect(container.querySelector('[aria-label="Mono font"]')).not.toBeNull()
 })

@@ -37,7 +37,7 @@ it.each([DESKTOP_PLATFORM, COMPACT_PLATFORM])(
         </PlatformProvider>,
       ),
     )
-    expect(container.textContent).toContain('Machines')
+    expect(container.textContent).toContain('Máquinas')
     expect(container.querySelector('button')?.textContent).toBe('Add machine')
     expect(container.querySelector('section')?.textContent).toBe('Full machine inventory')
   },

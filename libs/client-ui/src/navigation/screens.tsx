@@ -39,17 +39,17 @@ interface Screen {
 /** Every shared screen has a place in both shells, or an explicit platform gap. */
 export const SCREENS = {
   lanes: {
-    title: 'Lanes',
+    title: 'Carriles',
     icon: SidebarToggleIcon,
     scope: 'both',
     expanded: 'sidebar',
     compact: 'page',
   },
-  new: { title: 'New', icon: PlusIcon, scope: 'both', expanded: 'home', compact: 'page' },
+  new: { title: 'Nuevo', icon: PlusIcon, scope: 'both', expanded: 'home', compact: 'page' },
   machines: {
     icon: MachinesIcon,
     component: Machines,
-    title: 'Machines',
+    title: 'Máquinas',
     scope: 'both',
     expanded: 'page',
     compact: 'page',
@@ -57,7 +57,7 @@ export const SCREENS = {
   routines: {
     icon: ClockIcon,
     component: Routines,
-    title: 'Routines',
+    title: 'Rutinas',
     scope: 'both',
     expanded: 'page',
     compact: 'page',
@@ -65,7 +65,7 @@ export const SCREENS = {
   skills: {
     icon: SkillsIcon,
     component: Skills,
-    title: 'Skills',
+    title: 'Habilidades',
     scope: 'both',
     expanded: 'page',
     compact: 'page',
@@ -73,14 +73,14 @@ export const SCREENS = {
   artifacts: {
     icon: ArtifactsIcon,
     component: Artifacts,
-    title: 'Artifacts',
+    title: 'Artefactos',
     scope: 'both',
     expanded: 'page',
     compact: 'page',
   },
   settings: {
     icon: GearIcon,
-    title: 'Settings',
+    title: 'Ajustes',
     scope: 'both',
     expanded: 'modal',
     compact: 'page',
@@ -92,20 +92,20 @@ export const SCREENS = {
     expanded: 'pane',
     compact: 'pane',
   },
-  files: { icon: FileIcon, title: 'Files', scope: 'both', expanded: 'pane', compact: 'pane' },
+  files: { icon: FileIcon, title: 'Archivos', scope: 'both', expanded: 'pane', compact: 'pane' },
   changes: {
     icon: ChangesIcon,
-    title: 'Changes',
+    title: 'Cambios',
     scope: 'both',
     expanded: 'pane',
     compact: 'pane',
   },
   subagents: {
     icon: BranchIcon,
-    title: 'Subagents',
+    title: 'Subagentes',
     scope: 'both',
     expanded: 'pane',
-    compact: { notYet: 'Subagent inspection is not available on remote lanes yet.' },
+    compact: { notYet: 'La inspección de subagentes aún no está disponible en carriles remotos.' },
   },
   terminal: {
     icon: TerminalIcon,
@@ -128,7 +128,7 @@ export function GlobalScreen({
     <Suspense
       fallback={
         <p role="status" className="p-4">
-          Loading {SCREENS[page].title}…
+          Cargando {SCREENS[page].title}…
         </p>
       }
     >

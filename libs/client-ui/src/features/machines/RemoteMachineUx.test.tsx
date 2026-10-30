@@ -116,9 +116,9 @@ it('chip follows connected, connecting, reconnecting and down snapshots and reco
 it('On this machine gates reads and links, counts only that machine and opens filtered pages', async () => {
   await act(async () => root.render(<OnThisMachine hostId={MOCK_HOST_ID} />))
   expect(container.textContent).toContain('1 lane')
-  expect(container.textContent).not.toContain('Skills')
-  expect(container.textContent).not.toContain('Routines')
-  expect(container.textContent).not.toContain('Artifacts')
+  expect(container.textContent).not.toContain('Habilidades')
+  expect(container.textContent).not.toContain('Rutinas')
+  expect(container.textContent).not.toContain('Artefactos')
   expect(invoke).not.toHaveBeenCalled()
   const host = mockRemoteHosts[MOCK_HOST_ID]
   if (!host) throw new Error('Missing host')
@@ -132,13 +132,13 @@ it('On this machine gates reads and links, counts only that machine and opens fi
       },
     }),
   )
-  expect(button('Skills').textContent).toContain('1')
-  expect(button('Artifacts').textContent).toContain('1')
-  act(() => button('Skills').click())
+  expect(button('Habilidades').textContent).toContain('1')
+  expect(button('Artefactos').textContent).toContain('1')
+  act(() => button('Habilidades').click())
   expect(useMachinePagesStore.getState().skillsMachine).toBe(MOCK_HOST_ID)
-  act(() => button('Routines').click())
+  act(() => button('Rutinas').click())
   expect(useMachinePagesStore.getState().routinesMachine).toBe(`host:${MOCK_HOST_ID}`)
-  act(() => button('Artifacts').click())
+  act(() => button('Artefactos').click())
   expect(useMachinePagesStore.getState().artifactsMachine).toBe(MOCK_HOST_ID)
   await act(async () =>
     useRemoteLanesStore.setState({ hosts: { [MOCK_HOST_ID]: { ...host, state: 'down' } } }),
@@ -168,8 +168,8 @@ it('ignores counts from a detail selection that has gone away', async () => {
   await act(async () => root.render(<OnThisMachine hostId="other" />))
   await act(async () => first?.({ skills: [{ name: 'old' }] }))
   // The new machine's own read is still pending: loading, never the old machine's count.
-  expect(button('Skills').textContent).toContain('Loading')
-  expect(button('Skills').textContent).not.toContain('1')
+  expect(button('Habilidades').textContent).toContain('Loading')
+  expect(button('Habilidades').textContent).not.toContain('1')
 })
 
 it('keeps On this machine counts and pending reads across unchanged snapshots', async () => {
@@ -191,11 +191,11 @@ it('keeps On this machine counts and pending reads across unchanged snapshots', 
       useRemoteLanesStore.setState({ hosts: structuredClone(useRemoteLanesStore.getState().hosts) })
     })
   await act(async () => first({ skills: [{ name: 'skill' }] }))
-  expect(button('Skills').textContent).toContain('1')
+  expect(button('Habilidades').textContent).toContain('1')
   await act(async () => {
     useRemoteLanesStore.setState({ hosts: structuredClone(useRemoteLanesStore.getState().hosts) })
   })
-  expect(button('Skills').textContent).toContain('1')
+  expect(button('Habilidades').textContent).toContain('1')
   expect(invoke).toHaveBeenCalledTimes(1)
   await act(async () => {
     useRemoteLanesStore.setState({
@@ -208,9 +208,9 @@ it('keeps On this machine counts and pending reads across unchanged snapshots', 
     })
   })
   await act(async () => first({ skills: [{}, {}] }))
-  expect(button('Skills').textContent).toContain('Loading')
+  expect(button('Habilidades').textContent).toContain('Loading')
   await act(async () => finish({ skills: [{ name: 'new' }] }))
-  expect(button('Skills').textContent).toContain('1')
+  expect(button('Habilidades').textContent).toContain('1')
 })
 
 it('rejects pending counts immediately on reconnect before effect cleanup', async () => {
@@ -245,8 +245,8 @@ it('rejects pending counts immediately on reconnect before effect cleanup', asyn
     await Promise.resolve()
     expect(invoke.mock.calls.filter(([channel]) => channel === 'routines:list')).toHaveLength(0)
   })
-  expect(button('Skills').textContent).toContain('Loading')
-  expect(button('Skills').textContent).not.toContain('1')
+  expect(button('Habilidades').textContent).toContain('Loading')
+  expect(button('Habilidades').textContent).not.toContain('1')
   expect(invoke).toHaveBeenCalledTimes(1)
 })
 it('says Unavailable for a failed count, never zero', async () => {
@@ -258,8 +258,8 @@ it('says Unavailable for a failed count, never zero', async () => {
     throw new Error('busy')
   })
   await act(async () => root.render(<OnThisMachine hostId={MOCK_HOST_ID} />))
-  expect(button('Skills').textContent).toContain('Unavailable')
-  expect(button('Skills').textContent).not.toContain('0')
+  expect(button('Habilidades').textContent).toContain('Unavailable')
+  expect(button('Habilidades').textContent).not.toContain('0')
 })
 it('disables Stop until the lane has a first message, with the reason', () => {
   const id = mockRemoteInfo.sessionId

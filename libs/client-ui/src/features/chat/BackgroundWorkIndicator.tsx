@@ -123,7 +123,7 @@ function CurrentWorkSummary({ sessionId }: { sessionId: string }): React.JSX.Ele
           ))}
           {current.length > 8 && (
             <p className="text-text-secondary px-2 py-1 text-sm">
-              +{current.length - 8} more in the Subagents pane
+              +{current.length - 8} más en el panel de subagentes
             </p>
           )}
           {recent.length > 0 && (

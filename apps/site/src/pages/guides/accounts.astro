@@ -4,128 +4,128 @@ import Capture from '../../components/Capture.astro'
 import Command from '../../components/Command.astro'
 import { doc, piDoc, shot } from '../../lib/content'
 const sections: [string, string][] = [
-  ['plans', 'Which plans work'],
-  ['recommended', 'The setup we recommend'],
-  ['pi-accounts', 'ChatGPT, Copilot, and Kimi'],
-  ['prerequisites', 'Claude: before you begin'],
-  ['install', 'Claude: install the provider'],
-  ['sign-in', 'Claude: add an account'],
-  ['verify', 'Claude: test and select'],
-  ['multiple-accounts', 'Claude: add more accounts'],
-  ['routing', 'Claude: route new sessions'],
-  ['pivot', 'When a plan runs out'],
-  ['troubleshooting', 'Troubleshooting'],
+  ['plans', 'Qué planes funcionan'],
+  ['recommended', 'La configuración que recomendamos'],
+  ['pi-accounts', 'ChatGPT, Copilot y Kimi'],
+  ['prerequisites', 'Claude: antes de empezar'],
+  ['install', 'Claude: instalar el proveedor'],
+  ['sign-in', 'Claude: añadir una cuenta'],
+  ['verify', 'Claude: probar y seleccionar'],
+  ['multiple-accounts', 'Claude: añadir más cuentas'],
+  ['routing', 'Claude: enrutar nuevas sesiones'],
+  ['pivot', 'Cuando un plan se agota'],
+  ['troubleshooting', 'Solución de problemas'],
 ]
 ---
 
 <Guide
-  title="Subscriptions and accounts"
-  description="Sign in to the plans you already pay for, and add more than one. When a lane uses up one plan’s allowance, move it to another and keep going."
+  title="Suscripciones y cuentas"
+  description="Inicia sesión en los planes que ya pagas y añade más de uno. Cuando un carril agote la asignación de un plan, muévelo a otro y sigue adelante."
   sections={sections}
 >
   <section id="plans">
-    <h2>Which plans work</h2>
+    <h2>Qué planes funcionan</h2>
     <p>
-      You don’t need Claude Code to use Phosphor. Any provider pi supports works, including API keys
-      and your own endpoints. These are the subscription plans you can sign in with:
+      No necesitas Claude Code para usar Phosphor. Funciona cualquier proveedor que soporte pi, incluyendo claves de API
+      y tus propios endpoints. Estos son los planes de suscripción con los que puedes iniciar sesión:
     </p>
     <ul>
       <li>
-        <strong>ChatGPT Plus or Pro:</strong> pi’s built-in Codex sign-in, under Settings → Accounts.
-        You don’t need the Codex CLI.
+        <strong>ChatGPT Plus o Pro:</strong> inicio de sesión de Codex integrado en pi, en Ajustes → Cuentas.
+        No necesitas la CLI de Codex.
       </li><li>
-        <strong>Claude Pro or Max:</strong> the official Claude Code CLI plus the <code
+        <strong>Claude Pro o Max:</strong> la CLI oficial de Claude Code más el proveedor <code
           >@saccolabs/pi-claude-cli</code
-        > provider. Its logins live under Settings → Extensions → Claude Code, and you can add several.
+        >. Sus inicios de sesión viven en Ajustes → Extensiones → Claude Code, y puedes añadir varios.
       </li><li>
-        <strong>GitHub Copilot:</strong> Settings → Accounts. Copilot Enterprise Server uses pi’s terminal
-        login.
-      </li><li><strong>Kimi For Coding:</strong> Settings → Accounts.</li>
+        <strong>GitHub Copilot:</strong> Ajustes → Cuentas. Copilot Enterprise Server usa el inicio de sesión por terminal
+        de pi.
+      </li><li><strong>Kimi For Coding:</strong> Ajustes → Cuentas.</li>
     </ul>
     <p>
-      Settings → Accounts also has a direct Anthropic sign-in, but it bills extra usage rather than
-      your plan’s allowance. To spend a Claude Pro or Max plan, use the Claude Code provider. API
-      keys and custom endpoints are set up in pi: see <a href={piDoc('providers')}>providers</a> and <a
-        href={piDoc('models')}>custom models</a
-      > in pi’s docs.
+      Ajustes → Cuentas también tiene un inicio de sesión directo de Anthropic, pero factura el uso extra en lugar de
+      la asignación de tu plan. Para gastar un plan de Claude Pro o Max, usa el proveedor de Claude Code. Las claves de
+      API y los endpoints personalizados se configuran en pi: consulta <a href={piDoc('providers')}>proveedores</a> y <a
+        href={piDoc('models')}>modelos personalizados</a
+      > en la documentación de pi.
     </p>
   </section>
   <section id="recommended">
-    <h2>The setup we recommend</h2>
+    <h2>La configuración que recomendamos</h2>
     <p>
-      Every plan has a limit: a 5-hour window, a weekly cap, or a monthly allowance, depending on
-      the plan. With one plan, hitting it stops your work. With several, a lane moves to the next
-      one and keeps going.
+      Cada plan tiene un límite: una ventana de 5 horas, un tope semanal o una asignación mensual, según
+      el plan. Con un solo plan, alcanzarlo detiene tu trabajo. Con varios, un carril pasa al siguiente
+      y sigue adelante.
     </p>
     <ul>
       <li>
-        <strong>Two or more Claude Max accounts</strong> through Claude Code. Each login is kept separately,
-        and routing can spread new sessions across them.
+        <strong>Dos o más cuentas de Claude Max</strong> a través de Claude Code. Cada inicio de sesión se guarda por separado,
+        y el enrutamiento puede repartir nuevas sesiones entre ellos.
       </li><li>
-        <strong>ChatGPT through Codex</strong>, for a second model family on its own allowance.
-      </li><li><strong>Kimi For Coding or Copilot</strong>, if you have them.</li>
+        <strong>ChatGPT a través de Codex</strong>, para una segunda familia de modelos con su propia asignación.
+      </li><li><strong>Kimi For Coding o Copilot</strong>, si los tienes.</li>
     </ul>
     <p>
-      Only add accounts you’re allowed to use. This spreads your work across plans you already have.
-      It doesn’t lift any provider’s limits or change their terms.
+      Añade solo cuentas que tengas permitido usar. Esto reparte tu trabajo entre planes que ya tienes.
+      No eleva los límites de ningún proveedor ni cambia sus términos.
     </p>
   </section>
   <section id="pi-accounts">
-    <h2>Sign in to ChatGPT, Copilot, and Kimi</h2>
+    <h2>Iniciar sesión en ChatGPT, Copilot y Kimi</h2>
     <ol>
       <li>
-        Open Settings with Cmd+, on macOS or Ctrl+, on Windows/Linux, then select <strong
-          >Accounts</strong
-        >. Each provider pi can sign into has a row that says whether it’s ready.
+        Abre Ajustes con Cmd+, en macOS, o Ctrl+, en Windows/Linux, y selecciona <strong
+          >Cuentas</strong
+        >. Cada proveedor con el que pi puede iniciar sesión tiene una fila que indica si está listo.
       </li><li>
-        Choose <strong>Sign in</strong> and finish in your browser. A ChatGPT row then shows which account
-        is signed in.
+        Elige <strong>Iniciar sesión</strong> y termina en tu navegador. La fila de ChatGPT mostrará entonces qué cuenta
+        está conectada.
       </li><li>
-        pi keeps one sign-in per provider. <strong>Sign in again</strong> switches that provider to another
-        account.
+        pi mantiene un inicio de sesión por proveedor. <strong>Iniciar sesión de nuevo</strong> cambia ese proveedor a otra
+        cuenta.
       </li>
     </ol>
     <p>
-      If sign-in from Settings doesn’t finish, run <code>pi</code> in a terminal and use <code
+      Si el inicio de sesión desde Ajustes no termina, ejecuta <code>pi</code> en una terminal y usa <code
         >/login</code
-      >. These are pi’s own credentials. Claude Code logins are kept separately, below.
+      >. Estas son las credenciales propias de pi. Las sesiones de Claude Code se guardan por separado, más abajo.
     </p>
   </section>
   <section id="prerequisites">
-    <h2>Claude: before you begin</h2>
+    <h2>Claude: antes de empezar</h2>
     <p>
-      Finish <a href="/guides/#install">installing Phosphor and pi</a> first. You also need the official
-      Claude Code CLI and a Claude plan that covers how you plan to use it. This guide covers Pro and
-      Max. Anthropic’s terms, limits, and extra-usage charges still apply.
+      Termina primero <a href="/guides/#install">la instalación de Phosphor y pi</a>. También necesitas la CLI
+      oficial de Claude Code y un plan de Claude que cubra cómo planeas usarlo. Esta guía cubre Pro y
+      Max. Los términos, límites y cargos por uso extra de Anthropic siguen aplicando.
     </p>
     <p>
-      Install Claude Code with its <a href="https://code.claude.com/docs/en/setup"
-        >official setup instructions</a
-      > and check that <code>claude --version</code> works. Phosphor needs <code
+      Instala Claude Code con sus <a href="https://code.claude.com/docs/en/setup"
+        >instrucciones oficiales de configuración</a
+      > y comprueba que <code>claude --version</code> funcione. Phosphor necesita <code
         >pi-claude-cli 0.10.0</code
-      > or newer and Claude Code <code>2.1.263</code> or newer.
+      > o más reciente y Claude Code <code>2.1.263</code> o más reciente.
     </p>
     <p>
-      The provider drives the official CLI for you. Don’t pull a token out of your Claude
-      subscription or paste one into pi’s API key settings.
+      El proveedor maneja la CLI oficial por ti. No extraigas un token de tu suscripción de
+      Claude ni lo pegues en la configuración de claves de API de pi.
     </p>
   </section>
   <section id="install">
-    <h2>Claude: install the provider</h2>
+    <h2>Claude: instalar el proveedor</h2>
     <ol>
-      <li>Open Settings with Cmd+, on macOS or Ctrl+, on Windows/Linux.</li><li>
-        Select <strong>Extensions</strong>. Under Recommended, find <strong
-          >Claude Code provider</strong
-        > and choose <strong>Add</strong>. If the card says it needs the Claude CLI on your PATH,
-        install the CLI and make it visible to Phosphor before testing the provider.
+      <li>Abre Ajustes con Cmd+, en macOS, o Ctrl+, en Windows/Linux.</li><li>
+        Selecciona <strong>Extensiones</strong>. En Recomendados, busca <strong
+          >proveedor de Claude Code</strong
+        > y elige <strong>Añadir</strong>. Si la tarjeta indica que necesita la CLI de Claude en tu PATH,
+        instala la CLI y hazla visible para Phosphor antes de probar el proveedor.
       </li><li>
-        Wait for the install job to finish. A <strong>Claude Code</strong> tab then shows up under Extensions.
+        Espera a que termine el trabajo de instalación. Una pestaña <strong>Claude Code</strong> aparecerá entonces en Extensiones.
       </li>
     </ol>
-    <p>Or from a terminal:</p>
+    <p>O desde una terminal:</p>
     <Command
       cmd="pi install npm:@saccolabs/pi-claude-cli"
-      label="Install the Claude Code provider"
+      label="Instalar el proveedor de Claude Code"
     />
     <Capture
       image={shot('guide-extensions')}
@@ -134,24 +134,24 @@ const sections: [string, string][] = [
       provenance="Settings demo · example data"
     />
     <p>
-      Install globally the first time. A project install only applies to that workspace, and
-      different global and project versions get confusing fast. After installing or updating, let
-      running work finish and start a new session.
+      Instala globalmente la primera vez. Una instalación de proyecto solo aplica a ese workspace, y
+      tener versiones globales y de proyecto distintas se vuelve confuso rápidamente. Después de instalar o actualizar, deja
+      que el trabajo en curso termine y comienza una nueva sesión.
     </p>
   </section>
   <section id="sign-in">
-    <h2>Claude: add your first account</h2>
+    <h2>Claude: añadir tu primera cuenta</h2>
     <ol>
-      <li>Open <strong>Settings → Extensions → Claude Code</strong>.</li><li>
-        Check the Health rows: the extension must be installed and the <code>claude</code> binary found.
+      <li>Abre <strong>Ajustes → Extensiones → Claude Code</strong>.</li><li>
+        Revisa las filas de Salud: la extensión debe estar instalada y el binario <code>claude</code> encontrado.
       </li><li>
-        If your existing Claude CLI login shows up, make sure it’s the account you want. If not,
-        choose <strong>Add account</strong>.
+        Si aparece tu inicio de sesión existente de la CLI de Claude, asegúrate de que sea la cuenta que quieres. Si no,
+        elige <strong>Añadir cuenta</strong>.
       </li><li>
-        Finish signing in to Claude in your browser. If Phosphor asks for a code, paste the one
-        Claude shows you into <strong>Paste code</strong> and choose Continue. Don’t share that code.
+        Termina de iniciar sesión en Claude en tu navegador. Si Phosphor pide un código, pega el que
+        Claude te muestra en <strong>Pegar código</strong> y elige Continuar. No compartas ese código.
       </li><li>
-        Check that the account row appears. Use <strong>Sign in again</strong> to renew an expired login.
+        Comprueba que aparece la fila de la cuenta. Usa <strong>Iniciar sesión de nuevo</strong> para renovar un inicio de sesión expirado.
       </li>
     </ol>
     <Capture
@@ -161,51 +161,50 @@ const sections: [string, string][] = [
       provenance="Settings demo · masked examples"
     />
     <p>
-      <strong>Two places, two kinds of account:</strong> Settings → Accounts holds pi’s provider sign-ins.
-      The Claude Code tab holds the Claude CLI logins this package uses.
+      <strong>Dos lugares, dos tipos de cuenta:</strong> Ajustes → Cuentas guarda los inicios de sesión del proveedor de pi.
+      La pestaña Claude Code guarda los inicios de sesión de la CLI de Claude que usa este paquete.
     </p>
   </section>
   <section id="verify">
-    <h2>Claude: test the provider, then select it</h2>
+    <h2>Claude: probar el proveedor y seleccionarlo</h2>
     <ol>
       <li>
-        Scroll to <strong>Prove it end to end</strong> and choose <strong>Test provider</strong>.
+        Desplázate hasta <strong>Pruébalo de punta a punta</strong> y elige <strong>Probar proveedor</strong>.
       </li><li>
-        Check the job output. A working round trip prints <code>phosphor-provider-ok</code> and a confirmation.
-        This sends a small real prompt, so it uses a little plan quota.
+        Revisa la salida del trabajo. Una prueba exitosa imprime <code>phosphor-provider-ok</code> y una confirmación.
+        Esto envía un prompt real pequeño, por lo que usa un poco de cuota del plan.
       </li><li>
-        Start a new session. In the composer’s model menu, choose a Claude model under <code
+        Inicia una nueva sesión. En el menú de modelos del compositor, elige un modelo de Claude bajo <code
           >pi-claude-cli</code
         >.
       </li><li>
-        Send a small prompt. Open the context meter to check which Claude account the session is
-        using.
+        Envía un prompt pequeño. Abre el medidor de contexto para comprobar qué cuenta de Claude está usando
+        la sesión.
       </li>
     </ol>
     <p>
-      Leave the context window setting at its default for now. A bigger window means more history
-      before compaction, but each request can re-read more context. It doesn’t raise your plan’s
-      limits.
+      Deja la configuración de la ventana de contexto en su valor por defecto por ahora. Una ventana más grande significa más historial
+      antes de la compactación, pero cada petición puede releer más contexto. No eleva los límites de tu plan.
     </p>
   </section>
   <section id="multiple-accounts">
-    <h2>Claude: add another authorized account</h2>
+    <h2>Claude: añadir otra cuenta autorizada</h2>
     <p>
-      In the same tab, choose <strong>Add account</strong> again. Each login is stored separately, so
-      adding one doesn’t replace another.
+      En la misma pestaña, elige <strong>Añadir cuenta</strong> de nuevo. Cada inicio de sesión se guarda por separado, así que
+      añadir uno no reemplaza a otro.
     </p>
     <p>
-      If the browser signs you straight back into the first account, sign out at claude.ai and try
-      again. Signing in with an address that’s already listed just renews that row.
+      Si el navegador te conecta directamente de nuevo a la primera cuenta, cierra sesión en claude.ai y
+      inténtalo de nuevo. Iniciar sesión con una dirección que ya está listada solo renueva esa fila.
     </p>
     <p>
-      Only add accounts you’re allowed to use. Routing spreads your sessions across them. It doesn’t
-      lift provider limits or change anyone’s terms. Choose <strong>Refresh usage</strong> to update the
-      numbers routing uses for its next pick.
+      Añade solo cuentas que tengas permitido usar. El enrutamiento reparte tus sesiones entre ellas. No
+      eleva los límites de ningún proveedor ni cambia los términos de nadie. Elige <strong>Refrescar uso</strong> para actualizar los
+      números que el enrutamiento usa para su próxima elección.
     </p>
   </section>
   <section id="routing">
-    <h2>Claude: choose how new sessions are routed</h2>
+    <h2>Claude: elegir cómo se enrutan las nuevas sesiones</h2>
     <Capture
       image={shot('guide-routing')}
       alt="The Route new sessions controls with One account, In order top to bottom, and Round robin options; all accounts are fictional."
@@ -213,81 +212,81 @@ const sections: [string, string][] = [
       provenance="Settings demo · masked examples"
     />
     <ul>
-      <li><strong>One account:</strong> every new session uses the account you pick.</li><li>
-        <strong>In order, top to bottom:</strong> new sessions use the first eligible account. Reorder
-        with the arrows. Accounts that are unavailable, out of quota, or spending overage credits can
-        be skipped.
+      <li><strong>Una cuenta:</strong> cada nueva sesión usa la cuenta que elijas.</li><li>
+        <strong>En orden, de arriba a abajo:</strong> las nuevas sesiones usan la primera cuenta elegible. Reordena
+        con las flechas. Las cuentas no disponibles, sin cuota o gastando créditos de sobregiro pueden
+        omitirse.
       </li><li>
-        <strong>Round robin:</strong> new sessions take turns across eligible accounts.
+        <strong>Round robin:</strong> las nuevas sesiones se turnan entre las cuentas elegibles.
       </li>
     </ul>
     <p>
-      Usage numbers can be cached. If they’re missing or stale, don’t assume the account has room.
-      When it matters, check usage and billing with the provider.
+      Los números de uso pueden estar en caché. Si faltan o están desactualizados, no asumas que la cuenta tiene espacio.
+      Cuando importa, comprueba el uso y la facturación con el proveedor.
     </p>
     <aside class="notice">
-      <strong>Routing only picks for new sessions</strong><p>
-        A running session keeps the account it started with. Open an account row to see its usage
-        and live sessions, and move one to another account from there or from the context meter. <a
-          href="#pivot">When a plan runs out</a
-        > covers what a move costs.
+      <strong>El enrutamiento solo elige para nuevas sesiones</strong><p>
+        Una sesión en curso mantiene la cuenta con la que empezó. Abre una fila de cuenta para ver su uso
+        y sesiones activas, y mueve una a otra cuenta desde ahí o desde el medidor de contexto. <a
+          href="#pivot">Cuando un plan se agota</a
+        > cubre lo que cuesta un cambio.
       </p>
     </aside>
   </section>
   <section id="pivot">
-    <h2>When a plan runs out</h2>
+    <h2>Cuando un plan se agota</h2>
     <p>
-      Open the context meter in the composer to see how much of your Claude or ChatGPT plan is used,
-      per window, with reset times. When a Claude account gets close to its limit, a banner also
-      shows above the composer.
+      Abre el medidor de contexto en el compositor para ver cuánto de tu plan de Claude o ChatGPT se ha usado,
+      por ventana, con tiempos de reinicio. Cuando una cuenta de Claude se acerca a su límite, un banner también
+      aparece sobre el compositor.
     </p>
     <ul>
       <li>
-        <strong>Move to another Claude account:</strong> in the context meter, choose <strong
-          >Switch account</strong
-        >. The lane restarts on that account from its saved history.
+        <strong>Cambiar a otra cuenta de Claude:</strong> en el medidor de contexto, elige <strong
+          >Cambiar cuenta</strong
+        >. El carril se reinicia en esa cuenta desde su historial guardado.
       </li><li>
-        <strong>Move to another model:</strong> pick one from the composer’s model menu, from any provider
-        you’re signed into. The conversation carries over.
+        <strong>Cambiar a otro modelo:</strong> elige uno del menú de modelos del compositor, de cualquier proveedor
+        con el que hayas iniciado sesión. La conversación se conserva.
       </li>
     </ul>
     <p>
-      Either way, the next turn re-reads the whole conversation on the new plan, so it costs
-      context. Let the current turn finish first. With In order or Round robin routing, new sessions
-      can also skip a Claude account that’s at its limit or spending overage credits.
+      En cualquier caso, el siguiente turno relee toda la conversación en el nuevo plan, por lo que cuesta
+      contexto. Deja terminar primero el turno actual. Con el enrutamiento En orden o Round robin, las nuevas sesiones
+      también pueden omitir una cuenta de Claude que esté en su límite o gastando créditos de sobregiro.
     </p>
   </section>
   <section id="troubleshooting">
-    <h2>Troubleshooting and updates</h2>
+    <h2>Solución de problemas y actualizaciones</h2>
     <ul>
       <li>
-        <strong>Claude Code tab missing:</strong> check the provider is installed in the right scope,
-        then reopen Settings.
+        <strong>Falta la pestaña Claude Code:</strong> comprueba que el proveedor esté instalado en el scope correcto,
+        y vuelve a abrir Ajustes.
       </li><li>
-        <strong>CLI not found:</strong> check the path under Health. Apps launched from the desktop don’t
-        always get the Node or shell setup your terminal has.
+        <strong>No se encuentra la CLI:</strong> revisa la ruta en Salud. Las aplicaciones iniciadas desde el escritorio no
+        siempre obtienen la configuración de Node o de shell que tiene tu terminal.
       </li><li>
-        <strong>Package or CLI is old:</strong> each has its own Update control. From a terminal: <code
+        <strong>El paquete o la CLI es antiguo:</strong> cada uno tiene su propio control de actualización. Desde una terminal: <code
           >pi update npm:@saccolabs/pi-claude-cli</code
-        > and <code>claude update</code>. Updating one doesn’t update the other.
+        > y <code>claude update</code>. Actualizar uno no actualiza el otro.
       </li><li>
-        <strong>A new model is missing:</strong> the model list comes from pi, not the Claude CLI, so
-        update pi too.
+        <strong>Falta un modelo nuevo:</strong> la lista de modelos viene de pi, no de la CLI de Claude, así que
+        actualiza pi también.
       </li><li>
-        <strong>Old session reports a context-policy change:</strong> choose <strong
-          >Rebuild the Claude session</strong
-        >. The next turn reloads saved history, which costs one full-context cache write.
+        <strong>Una sesión antigua reporta un cambio en la política de contexto:</strong> elige <strong
+          >Reconstruir la sesión de Claude</strong
+        >. El siguiente turno recarga el historial guardado, lo que cuesta una escritura de caché de contexto completo.
       </li><li>
-        <strong>Claude can’t see your existing MCP servers:</strong> that’s on purpose. Phosphor uses
-        pi’s built-in MCP, not Claude’s own MCP config. <a href="/guides/connectors/"
-          >Add those services in MCP Connectors</a
+        <strong>Claude no puede ver tus servidores MCP existentes:</strong> es a propósito. Phosphor usa
+        el MCP integrado de pi, no la configuración MCP de Claude. <a href="/guides/connectors/"
+          >Añade esos servicios en Conectores MCP</a
         >.
       </li>
     </ul>
     <p>
-      <a href={doc('cli-providers.md')}>Provider architecture and version requirements</a> · <a
-        href={doc('settings.md#accounts')}>Account reference</a
-      > · <a href="https://github.com/agustinsacco/pi-claude-cli">Provider source and releases</a>
+      <a href={doc('cli-providers.md')}>Arquitectura del proveedor y requisitos de versión</a> · <a
+        href={doc('settings.md#accounts')}>Referencia de cuentas</a
+      > · <a href="https://github.com/agustinsacco/pi-claude-cli">Fuente y versiones del proveedor</a>
     </p>
   </section>
 </Guide>

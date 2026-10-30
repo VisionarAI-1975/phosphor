@@ -170,10 +170,10 @@ it.each([
   async (platform) => {
     await render(platform, <MachinesPage />)
     const titles = [...container.querySelectorAll('*')].filter(
-      (element) => element.children.length === 0 && element.textContent === 'Machines',
+      (element) => element.children.length === 0 && element.textContent === 'Máquinas',
     )
     expect(titles).toHaveLength(1)
-    expect(container.querySelector('h1')?.textContent).toBe('Machines')
+    expect(container.querySelector('h1')?.textContent).toBe('Máquinas')
   },
 )
 

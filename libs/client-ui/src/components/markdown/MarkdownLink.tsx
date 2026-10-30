@@ -101,10 +101,10 @@ export function MarkdownLink({
 function inAppTitle(target: Extract<LinkTarget, { kind: 'file' | 'artifact' }>): string {
   if (target.kind === 'artifact') {
     return target.version === undefined
-      ? 'Open in Artifacts pane'
-      : `Open in Artifacts pane at v${target.version}`
+      ? 'Abrir en el panel de artefactos'
+      : `Abrir en el panel de artefactos en v${target.version}`
   }
   return target.line === undefined
-    ? 'Open in Files pane'
-    : `Open in Files pane at line ${target.line}`
+    ? 'Abrir en el panel de archivos'
+    : `Abrir en el panel de archivos en la línea ${target.line}`
 }

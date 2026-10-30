@@ -92,11 +92,11 @@ it('is one bar: Back and the lane title with its Host and controller', () => {
 
 it('names a pane other than Chat and switches panes from the lane menu', () => {
   render({ ...location, pane: 'files' })
-  expect(button(/^Lane menu/)!.textContent).toContain('Files')
+  expect(button(/^Lane menu/)!.textContent).toContain('Archivos')
   act(() => button(/^Lane menu/)!.click())
   const panes = sheet()!.querySelector('nav[aria-label="Lane panes"]')!
-  expect(panes.querySelector('[aria-current="page"]')!.textContent).toBe('Files')
-  act(() => button('Changes')!.click())
+  expect(panes.querySelector('[aria-current="page"]')!.textContent).toBe('Archivos')
+  act(() => button('Cambios')!.click())
   expect(navigate).toHaveBeenCalledWith({ ...location, pane: 'changes' })
   expect(sheet()).toBeNull()
 })

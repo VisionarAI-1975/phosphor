@@ -78,10 +78,10 @@ it('lists New and the page links in order, then the machine scope, lanes and the
   await render()
   const nav = container.querySelector('nav')!
   expect([...nav.querySelectorAll('button')].map((b) => b.textContent?.trim())).toEqual([
-    'New',
-    'Artifacts',
-    'Skills',
-    'Routines',
+    'Nuevo',
+    'Artefactos',
+    'Habilidades',
+    'Rutinas',
     // Activity on the machines out of scope sits on the Machines row.
     'Machines1 new',
   ])
@@ -112,11 +112,11 @@ it('offers This Mac, each Host, All machines and Add machine in the machine scop
 it('New opens home for This Mac and the scoped Host composer for a Host', async () => {
   useSessionsStore.setState({ activeSessionId: 'local-lane' })
   await render()
-  await act(async () => navRow('New').click())
+  await act(async () => navRow('Nuevo').click())
   expect(useSessionsStore.getState().activeSessionId).toBeNull()
   expect(useRemoteComposer.getState().target).toBeNull()
   await act(async () => useRemoteLanesStore.getState().setFilter(MOCK_HOST_ID))
-  await act(async () => navRow('New').click())
+  await act(async () => navRow('Nuevo').click())
   expect(useRemoteComposer.getState().target).toEqual({
     hostId: MOCK_HOST_ID,
     repositoryId: '0000000000000001',
@@ -125,15 +125,15 @@ it('New opens home for This Mac and the scoped Host composer for a Host', async 
 
 it('page links toggle their page, Machines opens the list, and the footer gear opens Settings', async () => {
   await render()
-  await act(async () => navRow('Skills').click())
+  await act(async () => navRow('Habilidades').click())
   expect(useLayoutStore.getState().page).toBe('skills')
-  await act(async () => navRow('Skills').click())
+  await act(async () => navRow('Habilidades').click())
   expect(useLayoutStore.getState().page).toBeNull()
   useMachinesStore.setState({ view: { kind: 'machine', id: MOCK_HOST_ID } })
-  await act(async () => navRow('Machines').click())
+  await act(async () => navRow('Máquinas').click())
   expect(useLayoutStore.getState().page).toBe('machines')
   expect(useMachinesStore.getState().view).toEqual({ kind: 'list' })
-  await act(async () => button('Settings').click())
+  await act(async () => button('Ajustes').click())
   expect(useSettingsUiStore.getState().open).toBe(true)
 })
 

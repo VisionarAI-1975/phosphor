@@ -40,14 +40,14 @@ export function FeedbackButton(): React.JSX.Element {
           </span>
         )}
         <span className="min-w-0 flex-1 truncate">
-          {nudge ? 'How is Phosphor going?' : 'Send feedback'}
+          {nudge ? '¿Qué tal va Phosphor?' : 'Enviar comentarios'}
         </span>
       </TooltipButton>
       {nudge && (
         <TooltipButton
           onClick={() => void useFeedbackStore.getState().dismissNudge()}
-          aria-label="Dismiss"
-          title="Don't ask again"
+          aria-label="Descartar"
+          title="No volver a preguntar"
           className="text-text-tertiary hover:text-text mb-1 shrink-0 rounded px-1 text-sm"
         >
           ✕

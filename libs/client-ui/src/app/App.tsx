@@ -302,7 +302,7 @@ export function App(): React.JSX.Element {
           {machineFiles.open && machineFiles.hostId && (
             <aside
               data-testid="right-pane"
-              aria-label="Machine Files pane"
+              aria-label="Panel de archivos de la máquina"
               className="border-border w-[40%] min-w-80 border-l"
             >
               <MachineFilesPane hostId={machineFiles.hostId} />

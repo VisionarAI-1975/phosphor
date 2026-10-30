@@ -76,7 +76,7 @@ it.each([
       for (const other of ['mac', 'bee1-a', 'bee1-b'].filter((x) => x !== id))
         expect(container.textContent).not.toContain(`Title ${other}`)
       const count = id === 'mac' ? 1 : id === 'bee1-b' ? 2 : 0
-      expect(container.querySelector('[data-tooltip="Artifacts pane"]') !== null).toBe(true)
+      expect(container.querySelector('[data-tooltip="Panel de artefactos"]') !== null).toBe(true)
       if (count)
         expect(container.querySelector(`[data-tooltip="${count} artifacts"]`)).not.toBeNull()
     }
@@ -86,14 +86,14 @@ it.each([
       hosts[MOCK_HOST_ID]!.capabilities = ['sessions.read']
       useRemoteLanesStore.setState({ hosts })
     })
-    expect(container.querySelector('[data-tooltip="Artifacts pane"]')).toBeNull()
+    expect(container.querySelector('[data-tooltip="Panel de artefactos"]')).toBeNull()
     await act(async () => {
       const hosts = structuredClone(mockRemoteHosts)
       hosts[MOCK_HOST_ID]!.capabilities.push('artifacts.read')
       hosts[MOCK_HOST_ID]!.state = 'reconnecting'
       useRemoteLanesStore.setState({ hosts })
     })
-    expect(container.querySelector('[data-tooltip="Artifacts pane"]')).toBeNull()
+    expect(container.querySelector('[data-tooltip="Panel de artefactos"]')).toBeNull()
   } finally {
     act(() => root.unmount())
     container.remove()

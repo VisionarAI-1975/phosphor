@@ -112,13 +112,13 @@ it('initializes once per renderer, preserves sidebar selection and composer targ
   click('Override local')
   expect(container.querySelector('output')?.textContent).toBe('local')
   useRemoteComposer.setState({ target: null })
-  act(() => [...container.querySelectorAll('button')].find((b) => b.textContent === 'New')!.click())
+  act(() => [...container.querySelectorAll('button')].find((b) => b.textContent === 'Nuevo')!.click())
   expect(useRemoteComposer.getState().target).toEqual({
     hostId: MOCK_HOST_ID,
     repositoryId: '0000000000000001',
   })
   act(() => useRemoteLanesStore.getState().setFilter('local'))
-  act(() => [...container.querySelectorAll('button')].find((b) => b.textContent === 'New')!.click())
+  act(() => [...container.querySelectorAll('button')].find((b) => b.textContent === 'Nuevo')!.click())
   expect(useRemoteComposer.getState().target).toBeNull()
   expect(useSessionsStore.getState().activeSessionId).toBeNull()
 
@@ -179,7 +179,7 @@ it('puts elsewhere activity on the Machines nav row', async () => {
   )
   await act(async () => root.render(<Sidebar workspacePath="" />))
   const nav = [...container.querySelectorAll('nav button')].find((b) =>
-    b.textContent?.startsWith('Machines'),
+    b.textContent?.startsWith('Máquinas'),
   )!
   expect(nav.querySelector('[aria-label="Activity on other machines"]')?.textContent).toContain(
     '1 new',

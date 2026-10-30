@@ -110,11 +110,11 @@ async function openDrawer(): Promise<Element> {
  */
 function expectSharedNavigation(scope: Element): void {
   expect(labels(scope.querySelector('nav[aria-label="Main navigation"]'))).toEqual([
-    'New',
-    'Artifacts',
-    'Skills',
-    'Routines',
-    'Machines',
+    'Nuevo',
+    'Artefactos',
+    'Habilidades',
+    'Rutinas',
+    'Máquinas',
   ])
   const machineScope = byLabel(scope, 'Machine filter')
   const lane = scope.querySelector(`button[aria-label="${LANE.title}"]`) ?? undefined
@@ -137,7 +137,7 @@ it('wide: the column renders the shared composition, the machine scope and the H
 it('an old /inbox link opens the lane list, since neither client has an Inbox', async () => {
   window.history.replaceState(null, '', '/inbox')
   await render(WIDE_BROWSER_PLATFORM)
-  expect(container.querySelector('.page-shell h1')?.textContent).toBe('Lanes')
+  expect(container.querySelector('.page-shell h1')?.textContent).toBe('Carriles')
   expect(container.querySelector('section[aria-label="Lanes"]')).not.toBeNull()
 })
 
@@ -182,10 +182,10 @@ it('New and the footer Settings gear navigate through the URL with the current m
   const column = container.querySelector('aside.browser-navigation')!
   const nav = column.querySelector('nav[aria-label="Main navigation"]')!
   await act(async () =>
-    [...nav.querySelectorAll('button')].find((b) => b.textContent === 'New')!.click(),
+    [...nav.querySelectorAll('button')].find((b) => b.textContent === 'Nuevo')!.click(),
   )
   expect(window.location.pathname).toBe(`/new/${MOCK_HOST_ID}`)
-  await act(async () => byLabel(column, 'Settings').click())
+  await act(async () => byLabel(column, 'Ajustes').click())
   expect(window.location.pathname).toBe(`/pages/settings/${MOCK_HOST_ID}`)
 })
 
@@ -193,7 +193,7 @@ it('phone: the footer Settings gear closes the drawer and opens Settings for the
   window.history.replaceState(null, '', `/lanes/${MOCK_HOST_ID}`)
   await render(COMPACT_PLATFORM)
   const drawer = await openDrawer()
-  await act(async () => byLabel(drawer, 'Settings').click())
+  await act(async () => byLabel(drawer, 'Ajustes').click())
   expect(window.location.pathname).toBe(`/pages/settings/${MOCK_HOST_ID}`)
   expect(document.querySelector('[aria-label="Navigation"]')).toBeNull()
 })

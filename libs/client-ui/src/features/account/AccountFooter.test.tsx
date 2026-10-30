@@ -66,7 +66,7 @@ it('offers optional GitHub sign-in and direct settings while signed out', async 
   expect(document.activeElement).toBe(button('Sign in with GitHub'))
   await click('Sign in with GitHub')
   expect(invoke).toHaveBeenCalledWith('account:signIn')
-  await click('Settings')
+  await click('Ajustes')
   expect(useSettingsUiStore.getState().open).toBe(true)
 })
 it('shows the signed-in header, online count, machine navigation and sign-out', async () => {
@@ -78,7 +78,7 @@ it('shows the signed-in header, online count, machine navigation and sign-out', 
   expect(container.textContent).toContain('octo@example.com')
   expect(container.textContent).toContain('1 online')
   const machines = Array.from(document.querySelectorAll('button')).find((entry) =>
-    entry.textContent?.startsWith('Machines'),
+    entry.textContent?.startsWith('Máquinas'),
   )
   await act(async () => machines?.click())
   expect(useMachinesStore.getState().view).toEqual({ kind: 'list' })
@@ -93,11 +93,11 @@ it('supports keyboard navigation, Escape and outside dismissal with focus return
   // Native Enter/Space click activation is preserved by using a real button.
   await click('Sign in')
   key('ArrowDown')
-  expect(document.activeElement?.textContent).toContain('Settings')
+  expect(document.activeElement?.textContent).toContain('Ajustes')
   key('Home')
   expect(document.activeElement).toBe(button('Sign in with GitHub'))
   key('End')
-  expect(document.activeElement?.textContent).toContain('Settings')
+  expect(document.activeElement?.textContent).toContain('Ajustes')
   key('ArrowUp')
   expect(document.activeElement).toBe(button('Sign in with GitHub'))
   key('Escape')
@@ -152,10 +152,10 @@ it('opens Settings through the shell navigation with the current machine', async
       </NavigationProvider>,
     ),
   )
-  await click('Settings')
+  await click('Ajustes')
   expect(navigate).toHaveBeenLastCalledWith({ to: 'page', page: 'settings', machine: 'host-a' })
   await click('Your account')
-  await click('Settings')
+  await click('Ajustes')
   expect(navigate).toHaveBeenCalledTimes(2)
   expect(useSettingsUiStore.getState().open).toBe(false)
 })
@@ -181,12 +181,12 @@ it('advertises the Settings shortcut only where the app shortcuts are installed'
       </PlatformProvider>,
     ),
   )
-  expect(button('Settings').getAttribute('aria-description')).toBeNull()
-  expect(button('Settings').getAttribute('data-tooltip')).toBe('Settings')
+  expect(button('Ajustes').getAttribute('aria-description')).toBeNull()
+  expect(button('Ajustes').getAttribute('data-tooltip')).toBe('Ajustes')
   await click('Sign in')
   expect(
     Array.from(document.querySelectorAll('[data-popup-menu] button')).find((b) =>
-      b.textContent?.startsWith('Settings'),
+      b.textContent?.startsWith('Ajustes'),
     )?.textContent,
   ).toBe('Settings ')
 })

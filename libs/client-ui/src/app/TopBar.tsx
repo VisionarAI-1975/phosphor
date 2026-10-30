@@ -59,7 +59,7 @@ export function TopBar({
   return (
     <header className="titlebar-drag titlebar-inset-start titlebar-inset-end border-border bg-bg flex h-11 shrink-0 items-center gap-2 border-b">
       <IconButton
-        title={`${sidebarVisible ? 'Hide' : 'Show'} sidebar (${formatShortcut('mod', 'B')})`}
+        title={`${sidebarVisible ? 'Ocultar' : 'Mostrar'} barra lateral (${formatShortcut('mod', 'B')})`}
         active={false}
         onClick={() => useLayoutStore.getState().toggleSidebar()}
       >
@@ -116,8 +116,8 @@ function MachineFilesButton({
         : null
   return (
     <TooltipButton
-      title={reason ?? 'Files pane'}
-      aria-label="Files pane"
+      title={reason ?? 'Panel de archivos'}
+      aria-label="Panel de archivos"
       disabled={reason !== null}
       onClick={toggle}
       className={clsx(
@@ -153,28 +153,28 @@ function ActiveSessionControls({ sessionId }: { sessionId: string }): React.JSX.
           // See the sidebar row: re-keyed so the generated name animates in
           // rather than replacing the placeholder text in place.
           key={title ?? ''}
-          data-tooltip={naming.pending ? 'Naming this chat…' : undefined}
+          data-tooltip={naming.pending ? 'Nombrando este chat…' : undefined}
           className={clsx(
             'text-text truncate text-lg font-semibold',
             naming.pending && 'name-pending',
             naming.settled && 'name-enter',
           )}
         >
-          {title ?? 'New session'}
+          {title ?? 'Nueva sesión'}
         </span>
         <SwarmBadge sessionId={sessionId} />
       </div>
       {/* Reference order: terminal, files, changes, artifacts, subagents, kebab. */}
       <TerminalButton sessionId={sessionId} active={rightPane === 'terminal'} />
       <IconButton
-        title={`Files pane (${formatShortcut('mod', 'shift', 'E')})`}
+        title={`Panel de archivos (${formatShortcut('mod', 'shift', 'E')})`}
         active={rightPane === 'files'}
         onClick={() => useLayoutStore.getState().toggleRightPane('files', sessionId)}
       >
         <FileIcon />
       </IconButton>
       <IconButton
-        title={`Changes pane (${formatShortcut('mod', 'shift', 'G')})`}
+        title={`Panel de cambios (${formatShortcut('mod', 'shift', 'G')})`}
         active={rightPane === 'changes'}
         onClick={() => useLayoutStore.getState().toggleRightPane('changes', sessionId)}
       >
@@ -201,17 +201,17 @@ function SubagentsButton({
   return (
     <div className="relative">
       <IconButton
-        title="Subagents pane"
+        title="Panel de subagentes"
         active={active}
         onClick={() => useLayoutStore.getState().toggleRightPane('subagents', sessionId)}
       >
         <BranchIcon size={16} />
       </IconButton>
-      <CountBadge count={count} tone="accent" title={`${count} subagents active`} />
+      <CountBadge count={count} tone="accent" title={`${count} subagentes activos`} />
       {(attention || unknown) && (
         <span
           className="text-warning absolute -left-0.5 -top-1 text-xs"
-          data-tooltip={attention ? 'Needs parent attention' : 'Status unavailable'}
+          data-tooltip={attention ? 'Requiere atención del padre' : 'Estado no disponible'}
         >
           {attention ? '!' : '?'}
         </span>
@@ -261,7 +261,7 @@ function TerminalButton({
   return (
     <div className="relative">
       <IconButton
-        title={`Terminal pane (${formatShortcut('mod', '`')})`}
+        title={`Panel de terminal (${formatShortcut('mod', '`')})`}
         active={active}
         onClick={() => useLayoutStore.getState().toggleRightPane('terminal', sessionId)}
       >
@@ -271,13 +271,13 @@ function TerminalButton({
         count={tabCount}
         tone={running > 0 ? 'success' : 'neutral'}
         title={
-          running > 0 ? `${running} running` : `${tabCount} terminal${tabCount > 1 ? 's' : ''}`
+          running > 0 ? `${running} en ejecución` : `${tabCount} terminal${tabCount > 1 ? 'es' : ''}`
         }
       />
       {running > 0 && (
         <span
           className="bg-success absolute -right-0.5 -top-0.5 h-2 w-2 rounded-full"
-          data-tooltip={`${running} process${running > 1 ? 'es' : ''} running`}
+          data-tooltip={`${running} proceso${running > 1 ? 's' : ''} en ejecución`}
         />
       )}
     </div>
@@ -303,13 +303,13 @@ function ArtifactsButton({
   return (
     <div className="relative">
       <IconButton
-        title="Artifacts pane"
+        title="Panel de artefactos"
         active={active}
         onClick={() => useLayoutStore.getState().toggleRightPane('artifacts', sessionId)}
       >
         <ArtifactsIcon />
       </IconButton>
-      {count > 0 && <CountBadge count={count} tone="accent" title={`${count} artifacts`} />}
+      {count > 0 && <CountBadge count={count} tone="accent" title={`${count} artefactos`} />}
       {unseen > 0 && !active && (
         <span className="bg-accent absolute -right-0.5 -top-0.5 h-2 w-2 rounded-full" />
       )}
